@@ -1,0 +1,1827 @@
+        /* ========== MODULE CRM — Monday style ========== */
+        .crm-page { position: fixed; top: 0; left: 260px; right: 0; bottom: 0; background: var(--mn-bg); z-index: 110; overflow-y: auto; display: none; }
+        .crm-page:not(.module-home-page) { padding: 1.5rem 2rem 2.5rem; }
+        .crm-page.active { display: block; }
+        .main-content.logged-in .crm-page,
+        .main-content.logged-in .crm-list-page,
+        .main-content.logged-in .crm-fiche-page,
+        .main-content.logged-in .crm-pipeline-page { top: 56px; }
+        @media (max-width: 768px) { .crm-page { left: 0; } .crm-page:not(.module-home-page) { padding: 1rem; } }
+
+        .crm-shell { max-width: 1200px; margin: 0 auto; }
+        .crm-shell--wide { max-width: 1400px; }
+
+        .crm-hero { background: var(--mn-hero-gradient); border-radius: var(--mn-radius-lg); padding: 1.35rem 1.5rem; margin-bottom: 1.5rem; color: white; box-shadow: var(--mn-hero-shadow); }
+        .crm-hero-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            min-height: 2.75rem;
+            margin-bottom: 1.1rem;
+            position: relative;
+        }
+        .crm-hero-top .crm-btn-back {
+            position: relative;
+            z-index: 2;
+            justify-self: start;
+        }
+        .crm-hero-title-block {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: min(100%, 42rem);
+            max-width: calc(100% - 7rem);
+            text-align: center;
+            pointer-events: none;
+        }
+        .crm-hero-title-block h1 { margin: 0; font-size: 1.55rem; font-weight: 700; color: white; font-family: var(--mn-font); line-height: 1.2; }
+        .crm-hero-sub { margin: 0.35rem 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.78); }
+        .crm-prospect-hero-structure { margin-top: 0.55rem; }
+        .crm-prospect-hero-structure-inner {
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 0.65rem;
+            padding: 0.6rem 0.8rem; background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: var(--mn-radius);
+        }
+        .crm-prospect-hero-structure-inner--empty { align-items: center; }
+        .crm-prospect-hero-structure-main { display: flex; align-items: flex-start; gap: 0.55rem; min-width: 0; flex: 1; }
+        .crm-prospect-hero-structure-icon { font-size: 1.15rem; line-height: 1.2; flex-shrink: 0; opacity: 0.9; }
+        .crm-prospect-hero-structure-text { min-width: 0; }
+        .crm-prospect-hero-structure-name { font-weight: 600; font-size: 0.92rem; color: white; line-height: 1.25; }
+        .crm-prospect-hero-structure-meta { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 0.2rem; line-height: 1.35; word-break: break-word; }
+        .crm-prospect-hero-structure-meta a { color: rgba(255,255,255,0.9); text-decoration: underline; text-underline-offset: 2px; }
+        .crm-prospect-hero-edit {
+            flex-shrink: 0; border: none; background: rgba(255,255,255,0.15); color: white;
+            border-radius: 6px; padding: 0.3rem 0.5rem; cursor: pointer; font-size: 0.85rem; line-height: 1;
+            transition: background 0.15s;
+        }
+        .crm-prospect-hero-edit:hover { background: rgba(255,255,255,0.28); }
+        .crm-prospect-lists-sub { margin-top: 0.4rem; font-size: 0.82rem; }
+        .crm-fiche-card--highlight { box-shadow: 0 0 0 2px var(--mn-primary); transition: box-shadow 0.2s; }
+
+        /* Fiche prospect — bandeau centré */
+        .crm-hero--prospect {
+            position: relative;
+            padding: 2.5rem 3.25rem 1.35rem 1.35rem;
+            text-align: center;
+        }
+        .crm-hero-prospect-back {
+            position: absolute;
+            top: 1.15rem;
+            left: 1.35rem;
+            z-index: 2;
+        }
+        .crm-hero-prospect-body {
+            max-width: 52rem;
+            margin: 0 auto;
+        }
+        .crm-prospect-hero-name {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .crm-prospect-hero-name .crm-prospect-hero-meta-item {
+            gap: 0.65rem;
+        }
+        .crm-prospect-hero-title-text {
+            font-size: 2.15rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+        .crm-prospect-hero-role {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.65rem 1.25rem;
+            margin-top: 0.75rem;
+        }
+        .crm-prospect-hero-meta-icon--name {
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            width: 2.35rem;
+            height: 2.35rem;
+            font-size: 1.15rem;
+        }
+        .crm-prospect-hero-meta-icon--fonction {
+            background: rgba(129, 230, 217, 0.28);
+            border: 1px solid rgba(129, 230, 217, 0.5);
+        }
+        .crm-prospect-hero-meta-icon--structure {
+            background: rgba(144, 205, 244, 0.32);
+            border: 1px solid rgba(190, 227, 248, 0.5);
+        }
+        .crm-prospect-hero-role .crm-prospect-hero-meta-value {
+            font-size: 1.05rem;
+        }
+        .crm-prospect-hero-role a {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+        }
+        .crm-prospect-hero-role a:hover { color: white; opacity: 0.92; }
+        .crm-prospect-hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.65rem 1.25rem;
+            margin-top: 0.85rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+        }
+        .crm-prospect-hero-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            white-space: nowrap;
+        }
+        .crm-prospect-hero-meta-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            line-height: 1;
+            flex-shrink: 0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+        .crm-prospect-hero-meta-icon--email {
+            background: rgba(99, 179, 237, 0.28);
+            border: 1px solid rgba(144, 205, 244, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--tel {
+            background: rgba(104, 211, 145, 0.28);
+            border: 1px solid rgba(154, 230, 180, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--mobile {
+            background: rgba(183, 148, 244, 0.28);
+            border: 1px solid rgba(214, 188, 250, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--list {
+            background: rgba(246, 173, 85, 0.28);
+            border: 1px solid rgba(251, 211, 141, 0.45);
+        }
+        .crm-prospect-hero-meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+        .crm-prospect-hero-meta-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .crm-prospect-hero-meta-item a:hover { text-decoration: underline; }
+        .crm-prospect-hero-edit-btn {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-radius: 8px;
+            padding: 0.4rem 0.55rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1;
+            transition: background 0.15s;
+        }
+        .crm-prospect-hero-edit-btn:hover { background: rgba(255, 255, 255, 0.28); }
+        .crm-prospect-hero-toolbar {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            display: flex;
+            gap: 0.4rem;
+            z-index: 2;
+        }
+        .crm-prospect-hero-toolbar .crm-prospect-hero-edit-btn {
+            position: static;
+        }
+        .crm-prospect-hero-delete-btn:hover {
+            background: rgba(229, 62, 62, 0.28);
+        }
+        .crm-prospect-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .crm-hero--prospect .crm-prospect-hero-actions .btn {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+        .crm-hero--prospect .crm-prospect-hero-actions .btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+        .crm-hero--prospect .crm-prospect-hero-actions .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .crm-hero--prospect .crm-prospect-hero-delete {
+            color: #fed7d7;
+            border-color: rgba(254, 178, 178, 0.45);
+        }
+        .crm-hero--prospect .crm-prospect-hero-delete:hover {
+            background: rgba(229, 62, 62, 0.22);
+            color: #fff5f5;
+        }
+        @media (max-width: 640px) {
+            .crm-hero--prospect { padding: 2.75rem 1rem 2.75rem; }
+            .crm-prospect-hero-title-text { font-size: 1.75rem; }
+            .crm-prospect-hero-role { flex-direction: column; gap: 0.5rem; }
+            .crm-prospect-hero-meta { flex-direction: column; gap: 0.5rem; }
+            .crm-prospect-hero-meta-item { white-space: normal; justify-content: center; text-align: center; }
+        }
+        .crm-hero-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .crm-hero-actions--centered { justify-content: center; }
+        .crm-hero--home .crm-hero-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.75rem;
+            margin-bottom: 1.1rem;
+            padding-top: 0.25rem;
+        }
+        .crm-hero--home .crm-hero-logo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            border-radius: var(--mn-radius-lg);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .crm-hero--home .crm-hero-logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        .crm-hero--home .crm-hero-logo div {
+            font-size: 4rem !important;
+            line-height: 1;
+        }
+        .crm-hero--home .crm-hero-title-block {
+            position: static;
+            transform: none;
+            left: auto;
+            top: auto;
+            width: auto;
+            max-width: none;
+            pointer-events: auto;
+        }
+        .crm-hero-actions .btn { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+        .crm-hero-actions .btn-secondary { background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.28); }
+        .crm-hero-actions .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+        .crm-btn-back { background: white; color: var(--mn-text); border: 1px solid var(--mn-border); padding: 0.45rem 0.9rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; margin-bottom: 0.65rem; font-family: var(--mn-font); transition: background var(--mn-transition); }
+        .crm-btn-back:hover { background: var(--mn-border-light); }
+        .crm-hero .crm-btn-back { background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.28); margin-bottom: 0; }
+        .crm-hero .crm-btn-back:hover { background: rgba(255,255,255,0.2); }
+
+        /* Fiche dossier — bandeau centré (comme prospect) */
+        .crm-hero--deal {
+            position: relative;
+            padding: 2.5rem 3.25rem 3.25rem 1.35rem;
+            text-align: center;
+        }
+        .crm-hero--deal .crm-prospect-hero-toolbar {
+            z-index: 10;
+        }
+        .crm-deal-fiche-search-wrap--hero {
+            width: min(100%, 24rem);
+            margin: 0.85rem auto 0;
+            position: relative;
+            z-index: 1;
+        }
+        .crm-deal-fiche-search-wrap--hero .crm-deal-fiche-search {
+            width: 100%;
+            max-width: none;
+        }
+        .crm-deal-fiche-search-wrap--hero .crm-deal-fiche-search input {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: none;
+            color: white;
+            font-size: 0.875rem;
+        }
+        .crm-deal-fiche-search-wrap--hero .crm-deal-fiche-search input::placeholder {
+            color: rgba(255, 255, 255, 0.55);
+        }
+        .crm-deal-fiche-search-wrap--hero .crm-deal-fiche-search input:focus {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+            color: white;
+        }
+        .crm-deal-fiche-search-wrap--hero .crm-deal-fiche-search-results {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            top: calc(100% + 0.4rem);
+            margin-top: 0;
+            z-index: 30;
+            border-color: rgba(45, 55, 72, 0.14);
+            box-shadow: 0 12px 36px rgba(15, 23, 42, 0.2);
+        }
+        .crm-hero-deal-back {
+            position: absolute;
+            top: 1.15rem;
+            left: 1.35rem;
+            z-index: 2;
+        }
+        .crm-hero-deal-body {
+            max-width: 52rem;
+            margin: 0 auto;
+        }
+        .crm-hero--deal .crm-prospect-hero-actions .btn {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+        .crm-hero--deal .crm-prospect-hero-actions .btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+        .crm-hero--deal .crm-prospect-hero-actions .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .crm-hero--deal .crm-prospect-hero-delete {
+            color: #fed7d7;
+            border-color: rgba(254, 178, 178, 0.45);
+        }
+        .crm-hero--deal .crm-prospect-hero-delete:hover {
+            background: rgba(229, 62, 62, 0.22);
+            color: #fff5f5;
+        }
+        .crm-hero--deal .crm-prospect-hero-name {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .crm-hero--deal .crm-prospect-hero-name .crm-prospect-hero-meta-item {
+            gap: 0.65rem;
+        }
+        .crm-hero--deal .crm-prospect-hero-role .crm-prospect-hero-meta-value {
+            font-size: 1.05rem;
+        }
+        .crm-hero--deal .crm-prospect-hero-meta-icon--deal {
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            width: 2.35rem;
+            height: 2.35rem;
+            font-size: 1.15rem;
+        }
+        .crm-prospect-hero-meta-icon--stage {
+            background: rgba(129, 230, 217, 0.28);
+            border: 1px solid rgba(129, 230, 217, 0.5);
+        }
+        .crm-prospect-hero-meta-icon--line {
+            background: rgba(246, 173, 85, 0.28);
+            border: 1px solid rgba(251, 211, 141, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--status {
+            background: rgba(183, 148, 244, 0.28);
+            border: 1px solid rgba(214, 188, 250, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--prospect {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+        }
+        .crm-prospect-hero-meta-icon--project {
+            background: rgba(144, 205, 244, 0.32);
+            border: 1px solid rgba(190, 227, 248, 0.5);
+        }
+        .crm-prospect-hero-meta-icon--amount {
+            background: rgba(104, 211, 145, 0.28);
+            border: 1px solid rgba(154, 230, 180, 0.45);
+        }
+        .crm-prospect-hero-meta-icon--date {
+            background: rgba(99, 179, 237, 0.28);
+            border: 1px solid rgba(144, 205, 244, 0.45);
+        }
+        .crm-hero--deal .crm-prospect-hero-meta-value .crm-deal-status-badge { vertical-align: middle; }
+        .crm-deal-modal-prospect-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-chip {
+            border: 1px solid var(--mn-border);
+            background: var(--mn-bg);
+        }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-main {
+            color: var(--mn-text);
+        }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-main:hover {
+            background: rgba(41, 47, 76, 0.04);
+        }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-name { color: var(--mn-text); }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-meta { color: var(--mn-text-secondary); }
+        .crm-deal-modal-prospect-list .crm-deal-hero-prospect-remove {
+            color: var(--mn-text-secondary);
+            background: transparent;
+        }
+        @media (max-width: 640px) {
+            .crm-hero--deal { padding: 2.75rem 1rem 3rem; }
+            .crm-deal-fiche-search-wrap--hero { width: min(100%, 20rem); margin-top: 0.75rem; }
+        }
+
+        /* Legacy deal hero (modal chips) */
+        .crm-deal-hero-prospect-chip {
+            display: inline-flex;
+            align-items: stretch;
+            max-width: 100%;
+            border-radius: var(--mn-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .crm-deal-hero-prospect-main {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.1rem;
+            padding: 0.45rem 0.65rem;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--mn-font);
+            min-width: 0;
+        }
+        .crm-deal-hero-prospect-main:hover { background: rgba(255, 255, 255, 0.12); }
+        .crm-deal-hero-prospect-name {
+            font-weight: 600;
+            font-size: 0.86rem;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+        .crm-deal-hero-prospect-meta {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.25;
+        }
+        .crm-deal-hero-prospect-remove {
+            flex-shrink: 0;
+            width: 2rem;
+            border: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(0, 0, 0, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .crm-deal-hero-prospect-remove:hover {
+            background: rgba(229, 62, 62, 0.35);
+            color: white;
+        }
+        .crm-fiche-layout--deal { grid-template-columns: 1fr; }
+        @media (max-width: 1100px) {
+            .crm-deal-hero-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (max-width: 700px) {
+            .crm-hero-top--deal { flex-direction: column; }
+            .crm-hero-actions--deal { margin-left: 0; width: 100%; }
+            .crm-deal-hero-fields { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .crm-deal-hero-fields { grid-template-columns: 1fr; }
+        }
+
+        .crm-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .crm-header-left { display: flex; flex-direction: column; gap: 0.5rem; }
+        .crm-header h1 { color: var(--mn-text); font-size: 1.5rem; margin: 0; font-weight: 700; font-family: var(--mn-font); }
+        .crm-header-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: flex-start; }
+
+        .crm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .crm-stats--hub { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 900px) { .crm-stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .crm-stats { grid-template-columns: 1fr; } }
+        .crm-stat { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.1rem 1.25rem; color: var(--mn-text); display: flex; flex-direction: column; gap: 0.15rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow var(--mn-transition), transform var(--mn-transition); }
+        .crm-stat--clickable { cursor: pointer; }
+        .crm-stat--clickable:hover { box-shadow: var(--mn-shadow); transform: translateY(-2px); border-color: var(--mn-primary); }
+        .crm-stat:hover { box-shadow: var(--mn-shadow); transform: translateY(-1px); }
+        .crm-stat-icon { font-size: 1.35rem; line-height: 1; margin-bottom: 0.15rem; opacity: 0.85; }
+        .crm-stat-value { font-size: 1.75rem; font-weight: 800; line-height: 1.1; color: var(--mn-text); }
+        .crm-stat-label { font-size: 0.8rem; color: var(--mn-text-secondary); font-weight: 500; }
+        .crm-stat-sub { font-size: 0.72rem; color: var(--mn-text-light); font-weight: 500; margin-top: 0.2rem; line-height: 1.2; }
+        .crm-stat--relances { border-top: 3px solid #ed8936; }
+        .crm-stat--relances .crm-stat-value { color: #c05621; }
+
+        .crm-dashboard-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+        .crm-lists-section { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.35rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        .crm-prospects-section { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.35rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        .crm-prospects-toolbar { display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; flex: 1; justify-content: flex-end; min-width: 280px; }
+        .crm-home-list-filter { padding: 0.65rem 0.85rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); font-size: 0.88rem; background: var(--mn-bg); font-family: var(--mn-font); min-width: 160px; }
+        .crm-prospects-table-wrap { overflow-x: auto; }
+        .crm-home-list-pill { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--mn-blue-light); color: var(--mn-dark-blue); }
+        .crm-prospect-fonction { font-size: 0.75rem; color: var(--mn-text-light); }
+        .crm-row-action-btn { border: 1px solid var(--mn-border); background: white; border-radius: var(--mn-radius); padding: 0.25rem 0.45rem; cursor: pointer; font-size: 0.85rem; }
+        .crm-row-action-btn:hover { background: var(--mn-bg); }
+        .crm-lists-manage-toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 0.5rem; }
+        .crm-modal-hint { color: var(--mn-text-secondary); font-size: 0.88rem; margin: 0 0 0.75rem; }
+        .crm-section-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+        .crm-section-header h2 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--mn-text); }
+
+        .crm-search-bar { margin-bottom: 0; }
+        .crm-search-bar--inline { flex: 1; min-width: 200px; max-width: 320px; }
+        .crm-search-bar input { width: 100%; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: var(--mn-bg); font-size: 0.9rem; font-family: var(--mn-font); outline: none; box-sizing: border-box; transition: all var(--mn-transition); }
+        .crm-search-bar input:focus { border-color: var(--mn-primary); background: white; box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+
+        .crm-lists-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+        @media (max-width: 500px) { .crm-lists-grid { grid-template-columns: 1fr; } }
+
+        .crm-list-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); border-left: 4px solid var(--mn-blue); padding: 1.5rem; cursor: pointer; transition: all var(--mn-transition); position: relative; }
+        .crm-list-card:hover { transform: translateY(-2px); box-shadow: var(--mn-shadow); border-color: transparent; }
+        .crm-list-card-name { font-size: 1.1rem; font-weight: 700; color: var(--mn-text); margin-bottom: 0.4rem; padding-right: 4rem; }
+        .crm-list-card-desc { font-size: 0.85rem; color: var(--mn-text-secondary); margin-bottom: 1rem; line-height: 1.4; }
+        .crm-list-card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--mn-text-light); }
+        .crm-list-card-count { background: var(--mn-blue-light); color: var(--mn-dark-blue); padding: 0.3rem 0.75rem; border-radius: 20px; font-weight: 600; font-size: 0.82rem; }
+        .crm-list-card-actions { position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.3rem; opacity: 0; transition: opacity 0.2s; }
+        .crm-list-card:hover .crm-list-card-actions { opacity: 1; }
+        .crm-list-card-actions button { background: var(--mn-bg); border: 1px solid var(--mn-border); border-radius: var(--mn-radius); padding: 0.35rem 0.5rem; cursor: pointer; font-size: 0.85rem; transition: all var(--mn-transition); }
+        .crm-list-card-actions button:hover { background: var(--mn-border-light); }
+
+        .crm-empty { text-align: center; padding: 3rem 1.5rem; background: var(--mn-bg); border-radius: var(--mn-radius-lg); border: 1px dashed var(--mn-border); }
+        .crm-empty-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.4; }
+        .crm-empty-title { font-size: 1.2rem; font-weight: 600; color: var(--mn-text); margin-bottom: 0.5rem; }
+        .crm-empty-text { color: var(--mn-text-secondary); font-size: 0.95rem; }
+
+        /* CRM List Detail Page */
+        .crm-list-page { position: fixed; top: 0; left: 260px; right: 0; bottom: 0; background: var(--mn-bg); z-index: 120; overflow-y: auto; display: none; padding: 1.5rem 2rem 2.5rem; }
+        .crm-list-page.active { display: block; }
+        @media (max-width: 768px) { .crm-list-page { left: 0; padding: 1rem; } }
+
+        .crm-filters-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+        .crm-filters-bar select, .crm-filters-bar input { padding: 0.5rem 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.85rem; background: white; color: var(--mn-text); outline: none; font-family: var(--mn-font); }
+        .crm-filters-bar select:focus, .crm-filters-bar input:focus { border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .crm-filters-bar input[type="text"] { min-width: 200px; }
+
+        .crm-prospects-container { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); overflow: hidden; }
+
+        .crm-prospects-table { width: 100%; border-collapse: collapse; }
+        .crm-prospects-table thead { background: var(--mn-bg); }
+        .crm-prospects-table th { padding: 0.85rem 1rem; text-align: left; font-size: 0.78rem; font-weight: 600; color: var(--mn-text-secondary); text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--mn-border); white-space: nowrap; cursor: pointer; user-select: none; }
+        .crm-prospects-table th:hover { background: var(--mn-border-light); }
+        .crm-prospects-table td { padding: 0.75rem 1rem; font-size: 0.9rem; color: var(--mn-text); border-bottom: 1px solid var(--mn-border-light); vertical-align: middle; }
+        .crm-prospects-table tr:hover td { background: #f8f9fd; }
+        .crm-prospects-table tbody tr { cursor: pointer; transition: background 0.15s; }
+
+        .crm-prospect-org { font-weight: 600; color: var(--mn-text); }
+        .crm-prospect-contact { font-size: 0.82rem; color: var(--mn-text-secondary); }
+        .crm-prospect-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .crm-prospect-tag { padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.72rem; font-weight: 500; background: var(--mn-blue-light); color: var(--mn-dark-blue); }
+        .crm-prospect-tags-cell { display: flex; align-items: flex-start; gap: 0.35rem; min-width: 0; }
+        .crm-prospect-tags-cell .crm-prospect-tags { flex: 1; min-width: 0; }
+        .crm-list-tag-btn {
+            flex-shrink: 0;
+            border: none;
+            background: var(--mn-bg);
+            border-radius: 6px;
+            padding: 0.2rem 0.4rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            line-height: 1;
+            opacity: 0.75;
+        }
+        .crm-list-tag-btn:hover { opacity: 1; background: var(--mn-blue-light); }
+        .crm-list-tag-popover {
+            position: fixed;
+            z-index: 1300;
+            width: min(320px, calc(100vw - 2rem));
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            padding: 0.85rem;
+        }
+        .crm-list-tag-popover-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+            font-size: 0.88rem;
+        }
+        .crm-list-tag-popover-close {
+            border: none;
+            background: transparent;
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--mn-text-secondary);
+            padding: 0 0.25rem;
+        }
+        .crm-list-tag-popover-current {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            min-height: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+        .crm-list-tag-popover-current:empty::after {
+            content: 'Aucun tag';
+            color: var(--mn-text-light);
+            font-size: 0.82rem;
+        }
+        .crm-list-tag-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.2rem 0.45rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            background: var(--mn-blue-light);
+            color: var(--mn-dark-blue);
+        }
+        .crm-list-tag-chip button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+            color: inherit;
+            opacity: 0.7;
+            padding: 0;
+        }
+        .crm-list-tag-chip button:hover { opacity: 1; }
+        .crm-list-tag-popover-add {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+        .crm-list-tag-popover-add input {
+            flex: 1;
+            min-width: 0;
+            padding: 0.45rem 0.6rem;
+            border: 1px solid var(--mn-border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: var(--mn-font);
+        }
+        .crm-list-tags-editor { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+        .crm-list-tags-editor input[type="text"] {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.45rem 0.6rem;
+            border: 1px solid var(--mn-border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .crm-list-selection-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: -0.5rem 0 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--mn-blue-light, #ebf8ff);
+            border: 1px solid rgba(45, 156, 219, 0.25);
+            border-radius: var(--mn-radius);
+        }
+        .crm-list-selection-bar span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--mn-text);
+        }
+        .crm-list-selection-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .crm-bulk-history-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .crm-bulk-history-form .crm-fiche-select,
+        .crm-bulk-history-form .crm-fiche-textarea {
+            width: 100%;
+        }
+        #crmFiltersBar select {
+            padding: 0.55rem 0.75rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            font-size: 0.88rem;
+            font-family: var(--mn-font);
+            background: white;
+            color: var(--mn-text);
+            max-width: 220px;
+        }
+
+        .crm-table-empty { text-align: center; padding: 3rem 1rem; color: var(--mn-text-light); }
+        .crm-table-empty-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+
+        .crm-select-cb { width: 18px; height: 18px; accent-color: var(--mn-dark-blue); cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .crm-prospects-table { font-size: 0.82rem; }
+            .crm-prospects-table th, .crm-prospects-table td { padding: 0.6rem 0.5rem; }
+            .crm-col-hide-mobile { display: none; }
+        }
+
+        /* CRM Prospect Modal */
+        .crm-prospect-modal .modal-content { max-width: 680px; }
+        #crmListModal.modal.active,
+        #crmStructureModal.modal.active {
+            z-index: 10050;
+        }
+        .crm-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem; }
+        @media (max-width: 500px) { .crm-form-row { grid-template-columns: 1fr; } }
+        .crm-form-section { margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--mn-border); }
+        .crm-form-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .crm-form-section h4 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--mn-text); display: flex; align-items: center; gap: 0.5rem; }
+        .crm-contacts-list { margin-top: 0.5rem; }
+        .crm-contact-extra { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 0.5rem; margin-bottom: 0.5rem; align-items: end; }
+        @media (max-width: 600px) { .crm-contact-extra { grid-template-columns: 1fr 1fr; } }
+        .crm-contact-extra input { padding: 0.5rem 0.6rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.85rem; font-family: var(--mn-font); }
+        .crm-contact-remove { background: none; border: none; color: var(--mn-red); cursor: pointer; font-size: 1.1rem; padding: 0.3rem; }
+        .crm-notes-area { width: 100%; min-height: 100px; padding: 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.9rem; font-family: var(--mn-font); resize: vertical; box-sizing: border-box; }
+        .crm-notes-area:focus { outline: none; border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+
+        .crm-tags-select { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+        .crm-tag-option { padding: 0.35rem 0.75rem; border-radius: 20px; border: 1.5px solid var(--mn-border); font-size: 0.82rem; cursor: pointer; transition: all var(--mn-transition); background: white; color: var(--mn-text); user-select: none; }
+        .crm-tag-option:hover { border-color: var(--mn-primary); color: var(--mn-primary); }
+        .crm-tag-option.selected { background: var(--mn-dark-blue); color: white; border-color: var(--mn-dark-blue); }
+
+        /* Access management */
+        .crm-access-section { margin-bottom: 1.5rem; }
+        .crm-access-section h4 { margin: 0 0 0.75rem; font-size: 0.95rem; color: #2d3748; }
+        .crm-access-user-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; margin-bottom: 0.4rem; background: #f7fafc; border: 1px solid #edf2f7; }
+        .crm-access-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--mn-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; flex-shrink: 0; }
+        .crm-access-user-info { flex: 1; }
+        .crm-access-user-name { font-weight: 600; font-size: 0.88rem; color: var(--mn-text); }
+        .crm-access-user-role { font-size: 0.75rem; color: var(--mn-text-light); }
+        .crm-access-lock { font-size: 0.75rem; color: #a0aec0; font-style: italic; }
+        .crm-access-remove { background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 1rem; padding: 0.3rem; }
+        .crm-access-add-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+        .crm-access-add-row select { flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.85rem; }
+
+        /* Admin CRM page */
+        .crm-admin-cat-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+        .crm-admin-cat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .crm-admin-cat-header h4 { margin: 0; font-size: 1rem; color: #2d3748; }
+        .crm-admin-cat-options { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+        .crm-admin-cat-option { padding: 0.3rem 0.7rem; border-radius: 8px; background: #ebf8ff; color: #2b6cb0; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+        .crm-admin-cat-option button { background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 0.8rem; padding: 0; margin-left: 0.2rem; line-height: 1; }
+        .crm-admin-add-option { margin-top: 0.75rem; display: flex; gap: 0.5rem; }
+        .crm-admin-add-option input { flex: 1; padding: 0.45rem 0.65rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.85rem; }
+
+        .crm-admin-activity-card { background: white; border: 1px solid var(--mn-border); border-left: 4px solid var(--mn-primary); border-radius: var(--mn-radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+        .crm-activity-emoji { font-size: 1.6rem; line-height: 1; }
+        .crm-activity-status { font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.03em; }
+        .crm-activity-status--active { background: #c6f6d5; color: #22543d; }
+        .crm-activity-status--inactive { background: #edf2f7; color: #718096; }
+        .crm-activity-pipeline-row { display: flex; gap: 0.5rem; margin-bottom: 0.45rem; align-items: center; }
+        .crm-activity-pipeline-row input { flex: 1; padding: 0.45rem 0.65rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.85rem; }
+        .crm-activity-pipeline-row button { background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 0.9rem; padding: 0.25rem; }
+        .crm-list-activity-badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.45rem; }
+
+        .crm-export-list-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; border-radius: var(--mn-radius); margin-bottom: 0.4rem; background: var(--mn-bg); border: 1px solid var(--mn-border); cursor: pointer; transition: all var(--mn-transition); }
+        .crm-export-list-item:hover { background: var(--mn-border-light); }
+        .crm-export-list-item.selected { background: var(--mn-blue-light); border-color: var(--mn-dark-blue); }
+
+        /* CRM Import CSV */
+        .crm-import-dropzone { border: 2px dashed #cbd5e0; border-radius: 14px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s; background: #f7fafc; margin-bottom: 1rem; }
+        .crm-import-dropzone:hover, .crm-import-dropzone.dragover { border-color: #2d9cdb; background: #ebf8ff; }
+        .crm-import-dropzone-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .crm-import-dropzone-text { color: #718096; font-size: 0.9rem; }
+        .crm-import-dropzone-text strong { color: #2d9cdb; }
+        .crm-import-file-info { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: #ebf8ff; border-radius: 10px; margin-bottom: 1rem; }
+        .crm-import-file-info span { flex: 1; font-size: 0.88rem; color: #2d3748; font-weight: 600; }
+        .crm-import-file-info button { background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 1rem; }
+
+        .crm-import-step { display: none; }
+        .crm-import-step.active { display: block; }
+
+        .crm-import-steps-bar { display: flex; gap: 0; margin-bottom: 1.5rem; }
+        .crm-import-step-dot { flex: 1; text-align: center; padding: 0.6rem 0.3rem; font-size: 0.78rem; font-weight: 600; color: #a0aec0; border-bottom: 3px solid #e2e8f0; transition: all 0.3s; }
+        .crm-import-step-dot.active { color: #2d9cdb; border-bottom-color: #2d9cdb; }
+        .crm-import-step-dot.done { color: #48bb78; border-bottom-color: #48bb78; }
+
+        .crm-import-mapping-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; background: #f7fafc; border-radius: 10px; margin-bottom: 0.5rem; border: 1px solid #edf2f7; }
+        .crm-import-mapping-col { flex: 1; font-size: 0.88rem; font-weight: 600; color: #2d3748; }
+        .crm-import-mapping-preview { flex: 1; font-size: 0.8rem; color: #a0aec0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .crm-import-mapping-select { flex: 1; }
+        .crm-import-mapping-select select { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; }
+
+        .crm-import-preview-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 0.75rem; }
+        .crm-import-preview-table th { background: #f0f4f8; padding: 0.5rem; text-align: left; font-size: 0.75rem; color: #4a5568; border-bottom: 2px solid #e2e8f0; }
+        .crm-import-preview-table td { padding: 0.4rem 0.5rem; border-bottom: 1px solid #f0f4f8; color: #2d3748; }
+        .crm-import-preview-table tr:nth-child(even) { background: #f7fafc; }
+
+        .crm-import-summary { background: #f0fff4; border: 1px solid #c6f6d5; border-radius: 12px; padding: 1.25rem; margin-top: 1rem; }
+        .crm-import-summary h4 { margin: 0 0 0.5rem; color: #276749; font-size: 0.95rem; }
+        .crm-import-summary-stat { display: flex; justify-content: space-between; padding: 0.3rem 0; font-size: 0.88rem; color: #2d3748; }
+        .crm-import-summary-stat strong { color: #276749; }
+
+        /* ========== CRM V2 — Fiche, Pipeline, Relances ========== */
+        .crm-fiche-page, .crm-pipeline-page { position: fixed; top: 0; left: 260px; right: 0; bottom: 0; background: var(--mn-bg); z-index: 120; overflow-y: auto; display: none; padding: 1.5rem 2rem 2.5rem; }
+        .crm-fiche-page.active, .crm-pipeline-page.active { display: block; }
+        .task-fiche-page { z-index: 120; }
+        @media (max-width: 768px) { .crm-fiche-page, .crm-pipeline-page { left: 0; padding: 1rem; } }
+
+        .crm-fiche-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.25rem; align-items: start; }
+        .crm-fiche-layout--prospect { grid-template-columns: 1fr; }
+        .crm-prospect-shortcuts {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 420px);
+            gap: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .crm-prospect-shortcuts--solo {
+            grid-template-columns: minmax(0, 420px);
+            justify-content: center;
+        }
+        .crm-prospect-shortcuts--duo {
+            grid-template-columns: repeat(2, minmax(0, 420px));
+            justify-content: center;
+        }
+        .crm-prospect-shortcut-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35rem;
+            text-align: left;
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            padding: 1.15rem 1.25rem;
+            cursor: pointer;
+            transition: all var(--mn-transition);
+            font-family: var(--mn-font);
+            width: 100%;
+        }
+        .crm-prospect-shortcut-card:hover {
+            border-color: var(--mn-primary);
+            box-shadow: var(--mn-shadow);
+            transform: translateY(-2px);
+        }
+        .crm-prospect-shortcut-icon { font-size: 1.35rem; line-height: 1; }
+        .crm-prospect-shortcut-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--mn-text);
+        }
+        .crm-prospect-shortcut-preview {
+            font-size: 0.82rem;
+            color: var(--mn-text-secondary);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .crm-prospect-shortcuts,
+            .crm-prospect-shortcuts--solo,
+            .crm-prospect-shortcuts--duo { grid-template-columns: 1fr; }
+        }
+        .crm-prospect-deals-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+        }
+        .crm-prospect-deals-header h3 { margin: 0; }
+        .crm-prospect-deals-create { flex-shrink: 0; white-space: nowrap; }
+        .crm-prospect-deals-list { display: flex; flex-direction: column; gap: 0.35rem; }
+        .crm-prospect-deal-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.45rem 0.75rem;
+            padding: 0.65rem 0.75rem;
+            border: 1px solid var(--mn-border-light);
+            border-radius: var(--mn-radius);
+            background: var(--mn-bg);
+            cursor: pointer;
+            transition: all var(--mn-transition);
+        }
+        .crm-prospect-deal-row:hover {
+            border-color: var(--mn-primary);
+            background: #f8f9fd;
+            box-shadow: 0 2px 8px rgba(41, 47, 76, 0.06);
+        }
+        .crm-prospect-deal-row--won { border-left: 3px solid #48bb78; }
+        .crm-prospect-deal-row--lost { border-left: 3px solid #fc8181; opacity: 0.88; }
+        .crm-prospect-deal-row--open { border-left: 3px solid #4299e1; }
+        .crm-prospect-deal-icon { font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+        .crm-prospect-deal-title {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--mn-text);
+            flex: 1 1 8rem;
+            min-width: 0;
+        }
+        .crm-prospect-deal-row:hover .crm-prospect-deal-title { color: var(--mn-primary); }
+        .crm-prospect-deal-stage {
+            font-size: 0.8rem;
+            color: var(--mn-text-secondary);
+            background: white;
+            border: 1px solid var(--mn-border-light);
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .crm-prospect-deal-meta {
+            font-size: 0.78rem;
+            color: var(--mn-text-light);
+            white-space: nowrap;
+            margin-left: auto;
+        }
+        .crm-prospect-deals-empty {
+            color: var(--mn-text-light);
+            font-size: 0.88rem;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+        @media (max-width: 640px) {
+            .crm-prospect-deal-meta { margin-left: 0; width: 100%; }
+        }
+        @media (max-width: 900px) { .crm-fiche-layout, .crm-fiche-layout--prospect { grid-template-columns: 1fr; } }
+
+        .crm-fiche-col { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+        .crm-fiche-col .crm-fiche-card:last-child { margin-bottom: 0; }
+
+        .crm-fiche-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+        .crm-fiche-card h3 { margin: 0 0 1rem; font-size: 0.95rem; color: var(--mn-text); }
+        .crm-fiche-card .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--mn-text-secondary); margin-bottom: 0.3rem; }
+        .crm-fiche-info-grid { display: flex; flex-direction: column; gap: 0.65rem; }
+        .crm-fiche-info-row { display: flex; flex-direction: column; gap: 0.15rem; }
+        .crm-fiche-info-label { font-size: 0.75rem; font-weight: 600; color: var(--mn-text-secondary); text-transform: uppercase; letter-spacing: 0.03em; }
+        .crm-fiche-info-value { font-size: 0.9rem; color: var(--mn-text); }
+        .crm-fiche-select, .crm-fiche-input { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.9rem; font-family: var(--mn-font); box-sizing: border-box; }
+        .crm-fiche-textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.9rem; font-family: var(--mn-font); resize: vertical; box-sizing: border-box; margin: 0.5rem 0; }
+        .crm-fiche-empty { color: var(--mn-text-light); font-size: 0.88rem; padding: 0.5rem 0; }
+        .crm-followup-inline-form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.85rem;
+        }
+        .crm-followup-inline-form .crm-fiche-input,
+        .crm-followup-inline-form .crm-fiche-select {
+            width: auto;
+            flex: 1 1 auto;
+            min-width: 0;
+            margin: 0;
+        }
+        .crm-followup-inline-date { flex: 0 0 9.5rem; }
+        .crm-followup-inline-note { flex: 2 1 10rem; min-width: 8rem; }
+        .crm-followup-inline-assignee { flex: 1 1 8rem; min-width: 7rem; }
+        .crm-followup-inline-btn { flex: 0 0 auto; white-space: nowrap; padding: 0.55rem 0.85rem; }
+        .crm-followup-pending { margin-bottom: 0.75rem; }
+        .crm-followup-pending-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem 0.75rem;
+            padding: 0.55rem 0.7rem;
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: var(--mn-radius);
+            font-size: 0.84rem;
+        }
+        .crm-followup-pending-row.crm-followup-pending-row--overdue {
+            background: #fff5f5;
+            border-color: #fc8181;
+        }
+        .crm-followup-pending-main { flex: 1; min-width: 0; color: var(--mn-text); }
+        .crm-followup-pending-main strong { font-weight: 600; }
+        .crm-followup-pending-actions { flex-shrink: 0; }
+        .crm-followup-history { display: flex; flex-direction: column; gap: 0.35rem; }
+        .crm-followup-history-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.35rem 0.65rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid var(--mn-border-light);
+            font-size: 0.84rem;
+            color: var(--mn-text);
+        }
+        .crm-followup-history-row:last-child { border-bottom: none; }
+        .crm-followup-history-date { font-weight: 600; color: var(--mn-text-secondary); white-space: nowrap; }
+        .crm-followup-history-note { flex: 1; min-width: 0; }
+        .crm-followup-history-meta { font-size: 0.78rem; color: var(--mn-text-light); white-space: nowrap; }
+        .crm-followup-history-delete {
+            flex-shrink: 0;
+            border: none;
+            background: transparent;
+            color: var(--mn-text-light);
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+            padding: 0.15rem 0.25rem;
+            border-radius: 4px;
+            opacity: 0.55;
+            transition: opacity 0.15s, color 0.15s, background 0.15s;
+        }
+        .crm-followup-history-row:hover .crm-followup-history-delete { opacity: 1; }
+        .crm-followup-history-delete:hover {
+            opacity: 1;
+            color: #e53e3e;
+            background: #fff5f5;
+        }
+        .crm-followup-history-empty { color: var(--mn-text-light); font-size: 0.84rem; padding: 0.25rem 0; }
+        .crm-prospect-note-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mn-border-light);
+        }
+        .crm-prospect-note-form .crm-fiche-textarea { margin: 0; }
+        .crm-prospect-notes-list { display: flex; flex-direction: column; gap: 0.65rem; }
+        .crm-prospect-note-item {
+            display: flex;
+            gap: 0.65rem;
+            align-items: flex-start;
+            padding: 0.75rem;
+            background: var(--mn-bg);
+            border: 1px solid var(--mn-border-light);
+            border-radius: var(--mn-radius);
+        }
+        .crm-prospect-note-body { flex: 1; min-width: 0; }
+        .crm-prospect-note-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.35rem 0.65rem;
+            font-size: 0.76rem;
+            color: var(--mn-text-light);
+            margin-bottom: 0.35rem;
+        }
+        .crm-prospect-note-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            flex-shrink: 0;
+        }
+        .crm-prospect-note-edit,
+        .crm-prospect-note-delete {
+            flex-shrink: 0;
+            border: none;
+            background: transparent;
+            color: var(--mn-text-light);
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+            padding: 0.15rem 0.25rem;
+            border-radius: 4px;
+            opacity: 0.55;
+            transition: opacity 0.15s, color 0.15s, background 0.15s;
+        }
+        .crm-prospect-note-item:hover .crm-prospect-note-edit,
+        .crm-prospect-note-item:hover .crm-prospect-note-delete { opacity: 1; }
+        .crm-prospect-note-edit:hover {
+            opacity: 1;
+            color: var(--mn-primary);
+            background: #ebf8ff;
+        }
+        .crm-prospect-note-item--edit {
+            flex-direction: column;
+            background: white;
+            border-color: var(--mn-primary);
+        }
+        .crm-prospect-note-item--edit .crm-fiche-textarea { margin: 0; width: 100%; }
+        .crm-prospect-note-item--highlight,
+        .crm-prospect-note-item--pulse {
+            border-color: var(--mn-primary);
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+        }
+        .crm-prospect-note-item--pulse {
+            animation: crmDealNotePulse 2s ease-out 1;
+        }
+        @keyframes crmDealNotePulse {
+            0% { box-shadow: 0 0 0 0 rgba(49, 130, 206, 0.45); }
+            70% { box-shadow: 0 0 0 8px rgba(49, 130, 206, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(49, 130, 206, 0); }
+        }
+        .crm-prospect-note-text {
+            font-size: 0.88rem;
+            color: var(--mn-text);
+            line-height: 1.45;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .crm-prospect-note-delete:hover {
+            opacity: 1;
+            color: #e53e3e;
+            background: #fff5f5;
+        }
+        .crm-deal-note-activity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #2b6cb0;
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 999px;
+            padding: 0.12rem 0.55rem;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .crm-prospect-notes-empty { color: var(--mn-text-light); font-size: 0.84rem; padding: 0.25rem 0; }
+        @media (max-width: 640px) {
+            .crm-followup-inline-form { flex-direction: column; align-items: stretch; }
+            .crm-followup-inline-date,
+            .crm-followup-inline-note,
+            .crm-followup-inline-assignee { flex: 1 1 auto; width: 100%; }
+            .crm-followup-inline-btn { width: 100%; }
+        }
+        .crm-struct-section-add { margin-bottom: 0.75rem; }
+
+        .crm-activity-form { margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--mn-border-light); }
+        .crm-activity-inline-form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mn-border-light);
+        }
+        .crm-activity-inline-form .crm-fiche-select,
+        .crm-activity-inline-form .crm-fiche-textarea {
+            width: auto;
+            flex: 1 1 auto;
+            min-width: 0;
+            margin: 0;
+        }
+        .crm-activity-inline-type { flex: 0 0 9.5rem; }
+        .crm-activity-inline-text { flex: 2 1 14rem; min-width: 10rem; resize: vertical; min-height: 2.75rem; }
+        .crm-activity-inline-btn { flex: 0 0 auto; white-space: nowrap; align-self: stretch; padding: 0.55rem 0.85rem; }
+        @media (max-width: 640px) {
+            .crm-activity-inline-form { flex-direction: column; align-items: stretch; }
+            .crm-activity-inline-type,
+            .crm-activity-inline-text { flex: 1 1 auto; width: 100%; }
+            .crm-activity-inline-btn { width: 100%; align-self: auto; }
+        }
+        .crm-activities-timeline { display: flex; flex-direction: column; gap: 0.75rem; max-height: 60vh; overflow-y: auto; }
+        .crm-activity-item { display: flex; gap: 0.75rem; padding: 0.85rem; background: var(--mn-bg); border-radius: var(--mn-radius); border: 1px solid var(--mn-border-light); }
+        .crm-activity-item--edit { background: white; border-color: var(--mn-primary); }
+        .crm-activity-icon { font-size: 1.25rem; flex-shrink: 0; }
+        .crm-activity-body { flex: 1; min-width: 0; }
+        .crm-activity-meta-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
+        .crm-activity-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; font-size: 0.78rem; color: var(--mn-text-secondary); }
+        .crm-activity-actions { display: flex; gap: 0.25rem; flex-shrink: 0; }
+        .crm-activity-action { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); padding: 0.2rem 0.4rem; cursor: pointer; font-size: 0.8rem; line-height: 1.2; transition: background var(--mn-transition); }
+        .crm-activity-action:hover { background: var(--mn-border-light); }
+        .crm-activity-action--danger:hover { border-color: #fc8181; background: #fff5f5; }
+        .crm-activity-edit-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+        .crm-activity-text { font-size: 0.9rem; color: var(--mn-text); line-height: 1.45; }
+        .crm-activity-note-link {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.45rem 0.75rem;
+            margin-top: 0.55rem;
+            padding-top: 0.55rem;
+            border-top: 1px dashed var(--mn-border-light);
+        }
+        .crm-activity-note-link-btn {
+            border: 1px solid #bee3f8;
+            background: #ebf8ff;
+            color: #2b6cb0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.28rem 0.65rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .crm-activity-note-link-btn:hover {
+            background: #bee3f8;
+            border-color: #90cdf4;
+        }
+        .crm-activity-note-link-btn--add {
+            background: white;
+            border-style: dashed;
+            color: var(--mn-text-secondary);
+        }
+        .crm-activity-note-link-btn--add:hover {
+            background: #f7fafc;
+            color: #2b6cb0;
+            border-color: #bee3f8;
+            border-style: solid;
+        }
+        .crm-activity-note-snippet {
+            font-size: 0.76rem;
+            color: var(--mn-text-light);
+            font-style: italic;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .crm-activity-notes-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.45rem 0.65rem;
+            margin-top: 0.55rem;
+            padding-top: 0.55rem;
+            border-top: 1px dashed var(--mn-border-light);
+        }
+        .crm-activity-note-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .crm-activity-note-link {
+            border: 1px solid #bee3f8;
+            background: #ebf8ff;
+            color: #2b6cb0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.28rem 0.65rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .crm-activity-note-link:hover {
+            background: #bee3f8;
+            border-color: #90cdf4;
+        }
+        .crm-activity-note-create-btn {
+            border: 1px dashed #bee3f8;
+            background: white;
+            color: #2b6cb0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.28rem 0.65rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, border-style 0.15s;
+        }
+        .crm-activity-note-create-btn:hover {
+            background: #f7fbff;
+            border-color: #90cdf4;
+            border-style: solid;
+        }
+        .crm-activity-note-create-btn--inline {
+            flex-shrink: 0;
+        }
+
+        .crm-deal-doc-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .crm-deal-doc-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.65rem 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); background: var(--mn-bg); }
+        .crm-deal-doc-icon { font-size: 1.2rem; flex-shrink: 0; }
+        .crm-deal-doc-info { flex: 1; min-width: 0; }
+        .crm-deal-doc-title { font-weight: 600; font-size: 0.88rem; color: var(--mn-text); }
+        .crm-deal-doc-meta { font-size: 0.75rem; color: var(--mn-text-secondary); margin-top: 0.15rem; }
+        .crm-deal-doc-actions { display: flex; gap: 0.35rem; flex-shrink: 0; }
+        .crm-deal-doc-upload label.btn { margin-top: 0.25rem; }
+        .crm-hero--deal-docs {
+            position: relative;
+            padding: 1.35rem 1.35rem 1.15rem;
+            text-align: center;
+        }
+        .crm-hero-deal-docs-back {
+            position: absolute;
+            top: 1.15rem;
+            left: 1.35rem;
+            z-index: 2;
+        }
+        .crm-deal-docs-page-title {
+            margin: 0;
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: white;
+        }
+        .crm-deal-docs-page-sub {
+            margin: 0.35rem 0 0;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.82);
+        }
+        .crm-deal-docs-page-card { margin-top: 0; }
+        .crm-deal-doc-upload--page {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mn-border-light);
+        }
+        .crm-deal-doc-category-select { flex: 1 1 10rem; min-width: 8rem; margin: 0 !important; }
+        .crm-deal-doc-upload-btn { margin: 0 !important; cursor: pointer; }
+        .crm-deal-doc-list-wrap { min-height: 4rem; }
+        .crm-deal-doc-open-btn { font-size: 0.78rem; padding: 0.25rem 0.5rem; }
+        .crm-deal-doc-item--edit { align-items: flex-start; }
+        .crm-deal-doc-rename { width: 100%; }
+        .crm-deal-doc-rename-input { width: 100%; box-sizing: border-box; margin-bottom: 0.45rem; }
+        .crm-deal-doc-rename-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+
+        .crm-deal-notes-page-card { display: flex; flex-direction: column; gap: 1.75rem; }
+        .crm-deal-notes-section + .crm-deal-notes-section {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--mn-border-light);
+        }
+        .crm-deal-notes-section-head { margin-bottom: 0.85rem; }
+        .crm-deal-notes-section-title {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--mn-text);
+        }
+        .crm-deal-notes-section-hint {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--mn-text-light);
+            line-height: 1.4;
+        }
+        .crm-deal-notes-section--history .crm-deal-notes-section-title { color: #2b6cb0; }
+        .crm-deal-notes-page-form .crm-fiche-input { margin: 0; }
+        .crm-deal-notes-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .crm-deal-notes-empty {
+            color: var(--mn-text-light);
+            font-size: 0.84rem;
+            padding: 0.65rem 0.85rem;
+            background: var(--mn-bg);
+            border: 1px dashed var(--mn-border);
+            border-radius: var(--mn-radius);
+        }
+        .crm-deal-note-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            padding: 0.9rem 1rem;
+            background: white;
+            border: 1px solid var(--mn-border-light);
+            border-radius: var(--mn-radius);
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .crm-deal-note-card--history {
+            background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+            border-color: #bee3f8;
+        }
+        .crm-deal-note-card-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+        .crm-deal-note-card-title {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--mn-text);
+            line-height: 1.35;
+            word-break: break-word;
+        }
+        .crm-deal-note-card-actions {
+            display: flex;
+            gap: 0.25rem;
+            flex-shrink: 0;
+        }
+        .crm-deal-note-card-action {
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            padding: 0.2rem 0.4rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            opacity: 0.65;
+            transition: opacity 0.15s, background 0.15s, border-color 0.15s;
+        }
+        .crm-deal-note-card:hover .crm-deal-note-card-action { opacity: 1; }
+        .crm-deal-note-card-action:hover { background: var(--mn-border-light); }
+        .crm-deal-note-card-action--danger:hover { border-color: #fc8181; background: #fff5f5; }
+        .crm-deal-note-card-meta {
+            font-size: 0.76rem;
+            color: var(--mn-text-light);
+        }
+        .crm-deal-note-card-context {
+            margin: 0;
+            font-size: 0.78rem;
+            color: #2c5282;
+            line-height: 1.4;
+            padding: 0.45rem 0.65rem;
+            background: #ebf8ff;
+            border-radius: 8px;
+        }
+        .crm-deal-note-card-context-label {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.68rem;
+            color: #2b6cb0;
+        }
+        .crm-deal-note-card-body {
+            font-size: 0.88rem;
+            color: var(--mn-text);
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .crm-deal-note-card--edit {
+            border-color: var(--mn-primary);
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.12);
+        }
+        .crm-deal-note-card--edit .crm-fiche-input,
+        .crm-deal-note-card--edit .crm-fiche-textarea { margin: 0; width: 100%; box-sizing: border-box; }
+        .crm-deal-note-edit-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--mn-text-secondary);
+        }
+        .crm-deal-note-card--highlight,
+        .crm-deal-note-card--pulse {
+            border-color: var(--mn-primary);
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+        }
+        .crm-deal-note-card--pulse {
+            animation: crmDealNotePulse 2s ease-out 1;
+        }
+
+        .crm-deal-fiche-search-wrap,
+        .crm-deal-notes-search-wrap {
+            width: 100%;
+        }
+        .crm-deal-fiche-search-wrap.crm-deal-fiche-search-wrap--hero {
+            width: min(100%, 24rem);
+        }
+        .crm-deal-fiche-search,
+        .crm-deal-notes-search,
+        .crm-deal-documents-search {
+            width: 100%;
+            max-width: none;
+        }
+        .crm-deal-fiche-search input,
+        .crm-deal-notes-search input,
+        .crm-deal-documents-search input {
+            width: 100%;
+        }
+        .crm-deal-documents-search-wrap {
+            margin-bottom: 0.85rem;
+        }
+        .crm-deal-search-meta {
+            margin: 0.35rem 0 0;
+            font-size: 0.8rem;
+            color: var(--mn-text-light);
+        }
+        .crm-deal-fiche-search-results {
+            margin-top: 0.55rem;
+            border: 1px solid var(--mn-border-light);
+            border-radius: var(--mn-radius);
+            background: white;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            max-height: 18rem;
+            overflow-y: auto;
+        }
+        .crm-deal-search-result {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border: none;
+            border-bottom: 1px solid var(--mn-border-light);
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .crm-deal-search-result:last-child { border-bottom: none; }
+        .crm-deal-search-result:hover { background: var(--mn-bg); }
+        .crm-deal-search-result-icon { font-size: 1.1rem; line-height: 1.2; flex-shrink: 0; }
+        .crm-deal-search-result-body { min-width: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+        .crm-deal-search-result-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--mn-text);
+            line-height: 1.4;
+        }
+        .crm-deal-search-result-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .crm-deal-search-result-category {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #4a5568;
+        }
+        .crm-deal-search-result-snippet {
+            font-size: 0.82rem;
+            color: var(--mn-text-secondary);
+            line-height: 1.45;
+            word-break: break-word;
+        }
+        .crm-deal-search-highlight {
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.35) !important;
+            animation: crmDealNotePulse 2s ease-out 1;
+        }
+        .crm-deal-doc-item--highlight {
+            border-color: var(--mn-primary);
+            background: #f7fbff;
+        }
+        .crm-deal-status-badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px; margin-left: 0.35rem; }
+        .crm-deal-status-badge--open { background: #bee3f8; color: #2b6cb0; }
+        .crm-deal-status-badge--won { background: #c6f6d5; color: #22543d; }
+        .crm-deal-status-badge--lost { background: #fed7d7; color: #9b2c2c; }
+        .crm-deal-add-prospect { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; align-items: center; }
+        .crm-deal-add-prospect .crm-fiche-select { flex: 1; min-width: 180px; }
+        .crm-deal-prospect-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .crm-deal-prospect-item { display: flex; align-items: stretch; gap: 0.35rem; }
+        .crm-deal-prospect-link { flex: 1; cursor: pointer; padding: 0.65rem 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); transition: all var(--mn-transition); min-width: 0; }
+        .crm-deal-prospect-link:hover { border-color: var(--mn-primary); background: #f8f9fd; }
+        .crm-deal-prospect-name { font-weight: 600; font-size: 0.9rem; color: var(--mn-text); }
+        .crm-deal-prospect-remove {
+            flex-shrink: 0;
+            align-self: center;
+            font-size: 0.78rem;
+            padding: 0.35rem 0.55rem;
+            color: #c53030;
+            border-color: #feb2b2;
+            white-space: nowrap;
+        }
+        .crm-deal-prospect-remove:hover { background: #fff5f5; border-color: #fc8181; }
+        .crm-home-quick-search { position: relative; }
+        .crm-home-quick-search-results {
+            margin-top: 0.5rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            background: white;
+            box-shadow: var(--mn-shadow);
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .crm-home-quick-search-results .crm-search-item:last-child { border-bottom: none; }
+        .crm-home-quick-search-kind { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.1rem 0.4rem; border-radius: 999px; margin-right: 0.35rem; vertical-align: middle; }
+        .crm-home-quick-search-kind--prospect { background: var(--mn-blue-light); color: var(--mn-dark-blue); }
+        .crm-home-quick-search-kind--structure { background: #f3e8ff; color: #6b46c1; }
+        .crm-home-quick-search-kind--deal { background: #e6fffa; color: #0d9488; }
+        .crm-home-deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+        .crm-home-relances-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+        .crm-home-deal-card {
+            padding: 1rem 1.1rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            background: var(--mn-bg);
+            cursor: pointer;
+            transition: all var(--mn-transition);
+        }
+        .crm-home-deal-card:hover { border-color: var(--mn-primary); background: #f8f9fd; transform: translateY(-1px); box-shadow: var(--mn-shadow); }
+        .crm-home-deal-title { font-weight: 700; font-size: 0.95rem; color: var(--mn-text); margin-bottom: 0.35rem; }
+        .crm-home-deal-meta { font-size: 0.8rem; color: var(--mn-text-secondary); line-height: 1.4; }
+        .crm-home-deal-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.65rem; font-size: 0.78rem; color: var(--mn-text-light); }
+        .crm-home-deal-amount { font-weight: 700; color: var(--mn-dark-blue); }
+        .crm-home-deal-stage { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--mn-blue-light); color: var(--mn-dark-blue); }
+        .crm-deal-task-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .crm-deal-task-item { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.7rem 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); background: var(--mn-bg); }
+        .crm-deal-task-item--done { opacity: 0.72; }
+        .crm-deal-task-check { flex-shrink: 0; width: 1.35rem; height: 1.35rem; border: 2px solid var(--mn-border); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; background: white; margin-top: 0.1rem; }
+        .crm-deal-task-check--done { background: #c6f6d5; border-color: #48bb78; color: #22543d; }
+        .crm-deal-task-body { flex: 1; min-width: 0; }
+        .crm-deal-task-title { font-weight: 600; font-size: 0.9rem; color: var(--mn-text); }
+        .crm-deal-task-title--done { text-decoration: line-through; color: var(--mn-text-secondary); }
+        .crm-deal-task-meta { font-size: 0.78rem; color: var(--mn-text-secondary); margin-top: 0.25rem; line-height: 1.4; }
+        .crm-deal-task-actions { display: flex; gap: 0.25rem; flex-shrink: 0; }
+        .crm-deal-side-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+        .crm-fiche-layout > .crm-fiche-full-row { grid-column: 1 / -1; margin-top: 0.25rem; }
+        .crm-fiche-layout--deal > .crm-deal-section + .crm-deal-section {
+            border-top: 1px solid rgba(45, 157, 130, 0.28);
+            padding-top: 1.15rem;
+            margin-top: 0.35rem;
+        }
+        .crm-deal-tasks-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .crm-deal-tasks-header h3 { margin: 0; }
+        .crm-deal-history-section .crm-fiche-card { margin-bottom: 0; }
+        .crm-deal-history-section .crm-activities-timeline { max-height: 40vh; overflow-y: auto; }
+        .crm-deal-documents-section .crm-deal-doc-list-wrap,
+        .crm-deal-notes-section .crm-deal-notes-cards {
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+        .crm-deal-documents-section .crm-fiche-card,
+        .crm-deal-notes-section .crm-fiche-card,
+        .crm-deal-followup-section .crm-fiche-card { margin-bottom: 0; }
+        .crm-activities-show-all-wrap {
+            display: flex;
+            justify-content: center;
+            padding-top: 0.35rem;
+        }
+        .crm-activities-show-all-btn {
+            font-size: 0.84rem;
+            padding: 0.45rem 0.85rem;
+        }
+        .crm-prospect-history-section .crm-fiche-card { margin-bottom: 0; }
+        .crm-prospect-history-section .crm-activities-timeline { max-height: 40vh; }
+        .crm-struct-history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.35rem;
+        }
+        .crm-struct-history-header h3 { margin: 0; }
+        .crm-struct-history-filter {
+            min-width: 12rem;
+            max-width: 100%;
+            flex: 0 1 16rem;
+        }
+        .crm-struct-activity-prospect { margin: 0.2rem 0 0.45rem; }
+        .crm-struct-activity-prospect-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.15rem 0.55rem;
+            border: 1px solid var(--mn-border);
+            border-radius: 999px;
+            background: var(--mn-bg, #f7fafc);
+            color: var(--mn-primary, #2d9cdb);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .crm-struct-activity-prospect-link:hover {
+            background: var(--mn-blue-light, #ebf8ff);
+            border-color: rgba(45, 156, 219, 0.35);
+        }
+        .crm-deal-tasks-section .crm-deal-task-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem; }
+        @media (max-width: 700px) { .crm-deal-tasks-section .crm-deal-task-list { grid-template-columns: 1fr; } }
+        @media (max-width: 700px) { .crm-deal-side-row { grid-template-columns: 1fr; } }
+        .crm-deal-side-row .crm-fiche-card { margin-bottom: 0; height: 100%; }
+        .crm-deal-side-row .crm-notes-area { min-height: 140px; }
+        .crm-deal-task-form { margin-top: 0.25rem; padding-top: 0.75rem; border-top: 1px solid var(--mn-border); }
+        .crm-deal-form .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--mn-text-secondary); margin-bottom: 0.3rem; }
+        .crm-deal-form-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .crm-deal-status-line { font-size: 0.82rem; color: var(--mn-text-secondary); margin-bottom: 0.5rem; }
+        .crm-fiche-deal-card { padding: 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); margin-bottom: 0.5rem; cursor: pointer; transition: all var(--mn-transition); }
+        .crm-fiche-deal-card:hover { border-color: var(--mn-primary); background: #f8f9fd; }
+        .crm-fiche-deal-title { font-weight: 600; font-size: 0.9rem; }
+        .crm-fiche-deal-meta { font-size: 0.78rem; color: var(--mn-text-secondary); margin-top: 0.25rem; }
+
+        .crm-pipeline-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+        .crm-pipeline-tab { padding: 0.5rem 1rem; border-radius: 999px; border: 2px solid var(--line-color, var(--mn-primary)); background: white; color: var(--mn-text); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all var(--mn-transition); }
+        .crm-pipeline-tab.active { background: var(--line-color, var(--mn-primary)); color: white; border-color: var(--line-color, var(--mn-primary)); }
+
+        .crm-kanban-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            align-items: start;
+            padding-bottom: 1rem;
+            min-height: 200px;
+        }
+        .crm-kanban-col {
+            width: 100%;
+            min-width: 0;
+            background: #eef1f8;
+            border-radius: var(--mn-radius-lg);
+            display: flex;
+            flex-direction: column;
+            max-height: min(420px, 55vh);
+        }
+        .crm-kanban-col-header { padding: 0.85rem 1rem; font-weight: 700; font-size: 0.85rem; color: var(--mn-text); display: flex; justify-content: space-between; gap: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .crm-kanban-col-count { font-weight: 500; color: var(--mn-text-secondary); font-size: 0.78rem; }
+        .crm-kanban-col-body { padding: 0.65rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; min-height: 80px; }
+        .crm-kanban-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); padding: 0.75rem; cursor: grab; transition: box-shadow var(--mn-transition); }
+        .crm-kanban-card:hover { box-shadow: var(--mn-shadow); }
+        .crm-kanban-card:active { cursor: grabbing; }
+        .crm-kanban-card-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; }
+        .crm-kanban-card-badges { margin-bottom: 0.35rem; }
+        .crm-kanban-line-badge { display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 999px; }
+        .crm-pipeline-tab--all.active { background: var(--mn-brand-dark); border-color: var(--mn-brand-dark); color: white; }
+        .crm-kanban-card-org { font-size: 0.78rem; color: var(--mn-text-secondary); margin-bottom: 0.5rem; }
+        .crm-kanban-card-footer { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--mn-text-light); }
+
+        .crm-relances-panel { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.25rem; margin-bottom: 1.5rem; }
+        .crm-relances-panel-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+        .crm-relances-panel-header h3 { margin: 0; font-size: 1rem; color: var(--mn-text); }
+        .crm-relances-badge { background: var(--mn-primary); color: white; font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 999px; margin-left: 0.35rem; }
+        .crm-relances-mine-toggle { font-size: 0.85rem; color: var(--mn-text-secondary); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+        .crm-relances-scope-tabs { display: flex; gap: 0.45rem; flex-shrink: 0; }
+        .crm-relances-scope-tab { padding: 0.45rem 0.85rem; border-radius: 999px; border: 1px solid var(--mn-border); background: white; color: var(--mn-text-secondary); font-weight: 600; font-size: 0.82rem; cursor: pointer; transition: all var(--mn-transition); }
+        .crm-relances-scope-tab.active { background: var(--mn-primary); border-color: var(--mn-primary); color: white; }
+        .crm-relances-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+        .crm-relance-item { display: flex; flex-direction: column; gap: 0.65rem; padding: 0.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); transition: all var(--mn-transition); }
+        .crm-relance-item-main { flex: 1; cursor: pointer; min-width: 0; }
+        .crm-relance-item-main:hover .crm-relance-title { color: var(--mn-primary); }
+        .crm-relance-overdue { border-color: #fc8181; background: #fff5f5; }
+        .crm-relance-date { font-size: 0.78rem; font-weight: 600; color: var(--mn-text-secondary); margin-bottom: 0.25rem; }
+        .crm-relance-overdue .crm-relance-date { color: #c53030; }
+        .crm-relance-kind { font-weight: 500; opacity: 0.85; }
+        .crm-relance-title { font-weight: 600; font-size: 0.88rem; transition: color var(--mn-transition); }
+        .crm-relance-sub { font-size: 0.78rem; color: var(--mn-text-light); margin-top: 0.2rem; }
+        .crm-relance-assignee { font-size: 0.76rem; color: var(--mn-text-secondary); margin-top: 0.35rem; font-weight: 500; }
+        .crm-relance-validate-btn { width: 100%; font-size: 0.82rem; padding: 0.45rem 0.65rem; }
+        .crm-relances-empty { color: var(--mn-text-light); font-size: 0.88rem; }
+
+        .crm-global-search-wrap { position: relative; margin-bottom: 1.5rem; }
+        .module-home-welcome .crm-global-search-wrap {
+            max-width: 640px;
+            margin: 1rem auto 0.75rem;
+            width: 100%;
+        }
+        .crm-global-search-wrap input { width: 100%; padding: 0.85rem 1.25rem 0.85rem 2.75rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); font-size: 0.95rem; box-sizing: border-box; background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23a0aec0' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") no-repeat 1rem center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color var(--mn-transition), box-shadow var(--mn-transition); }
+        .crm-global-search-wrap input:focus { outline: none; border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .crm-global-search-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); box-shadow: var(--mn-shadow); z-index: 50; max-height: 320px; overflow-y: auto; margin-top: 0.35rem; }
+        .crm-search-item { padding: 0.65rem 1rem; cursor: pointer; font-size: 0.88rem; border-bottom: 1px solid var(--mn-border-light); }
+        .crm-search-item:hover { background: var(--mn-bg); }
+        .crm-search-item small { color: var(--mn-text-light); margin-left: 0.35rem; }
+        .crm-search-empty { padding: 1rem; color: var(--mn-text-secondary); font-size: 0.88rem; }
+
+        .crm-pick-wrap { position: relative; }
+        .crm-pick-input { width: 100%; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: var(--mn-bg); font-size: 0.9rem; font-family: var(--mn-font); outline: none; box-sizing: border-box; transition: all var(--mn-transition); }
+        .crm-pick-input:focus { border-color: var(--mn-primary); background: white; box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .crm-pick-input:disabled { opacity: 0.7; cursor: not-allowed; background: #f1f5f9; }
+        .crm-pick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); box-shadow: var(--mn-shadow); z-index: 60; max-height: 280px; overflow-y: auto; margin-top: 0.35rem; }
+        .crm-pick-sub { font-size: 0.78rem; color: var(--mn-text-light); margin-top: 0.15rem; }
+        .crm-pick-create-wrap { padding: 0.5rem; border-top: 1px solid var(--mn-border-light); background: var(--mn-bg); position: sticky; bottom: 0; }
+        .crm-deal-pick-create { width: 100%; padding: 0.45rem 0.65rem; border: 1px dashed var(--mn-border); border-radius: var(--mn-radius); background: white; color: var(--mn-primary); font-size: 0.82rem; font-family: var(--mn-font); cursor: pointer; }
+        .crm-deal-pick-create:hover { background: rgba(97, 97, 255, 0.06); border-color: var(--mn-primary); }
+
+        .crm-ms-wrap { position: relative; }
+        .crm-ms-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: white; font-size: 0.9rem; font-family: var(--mn-font); color: var(--mn-text-light); cursor: pointer; text-align: left; box-sizing: border-box; transition: all var(--mn-transition); }
+        .crm-ms-wrap.crm-ms-has-value .crm-ms-trigger { color: var(--mn-text); }
+        .crm-ms-wrap.crm-ms-open .crm-ms-trigger { border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .crm-ms-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .crm-ms-chevron { color: var(--mn-text-light); font-size: 0.75rem; flex-shrink: 0; transition: transform var(--mn-transition); }
+        .crm-ms-wrap.crm-ms-open .crm-ms-chevron { transform: rotate(180deg); }
+        .crm-ms-panel { position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); box-shadow: var(--mn-shadow); z-index: 80; overflow: hidden; }
+        .crm-ms-search { width: 100%; padding: 0.65rem 0.85rem; border: none; border-bottom: 1px solid var(--mn-border-light); font-size: 0.88rem; font-family: var(--mn-font); outline: none; box-sizing: border-box; }
+        .crm-ms-search:focus { background: #fafbff; }
+        .crm-ms-options { max-height: 220px; overflow-y: auto; padding: 0.35rem 0; }
+        .crm-ms-option { display: flex !important; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0.85rem; font-size: 0.88rem; font-weight: 400; margin-bottom: 0; cursor: pointer; transition: background var(--mn-transition); }
+        .crm-ms-option:hover { background: var(--mn-bg); }
+        .crm-ms-option input[type="checkbox"] { width: 1rem !important; height: 1rem; min-width: 1rem; padding: 0 !important; margin: 0.15rem 0 0 0 !important; flex-shrink: 0; cursor: pointer; accent-color: var(--mn-primary); }
+        .crm-ms-option-text { flex: 1; min-width: 0; line-height: 1.35; padding-left: 0.15rem; }
+        .crm-ms-option-text small { display: block; color: var(--mn-text-light); font-size: 0.78rem; margin-top: 0.1rem; }
+        .crm-ms-empty { padding: 0.85rem; color: var(--mn-text-light); font-size: 0.85rem; }
+        .crm-ms-footer { padding: 0.5rem 0.85rem 0.65rem; border-top: 1px solid var(--mn-border-light); background: #fafbfc; }
+        .crm-ms-new { width: 100%; padding: 0.45rem 0.65rem; border: 1px dashed var(--mn-border); border-radius: var(--mn-radius); background: white; color: var(--mn-primary); font-size: 0.82rem; font-family: var(--mn-font); cursor: pointer; transition: all var(--mn-transition); }
+        .crm-ms-new:hover { border-color: var(--mn-primary); background: #f8f9fd; }
+        .crm-home-list-pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+        .crm-struct-pick { position: relative; }
+        .crm-struct-pick-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: white; font-size: 0.9rem; font-family: var(--mn-font); color: var(--mn-text-light); cursor: pointer; text-align: left; box-sizing: border-box; }
+        .crm-struct-pick-has-value .crm-struct-pick-trigger { color: var(--mn-text); }
+        .crm-struct-pick-open .crm-struct-pick-trigger { border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .crm-struct-pick-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .crm-struct-pick-chevron { color: var(--mn-text-light); font-size: 0.75rem; }
+        .crm-struct-pick-panel { position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); box-shadow: var(--mn-shadow); z-index: 85; overflow: hidden; }
+        .crm-struct-pick-search { width: 100%; padding: 0.65rem 0.85rem; border: none; border-bottom: 1px solid var(--mn-border-light); font-size: 0.88rem; font-family: var(--mn-font); outline: none; box-sizing: border-box; }
+        .crm-struct-pick-options { max-height: 220px; overflow-y: auto; }
+        .crm-struct-pick-option { width: 100%; display: block; text-align: left; padding: 0.55rem 0.85rem; border: none; background: white; cursor: pointer; font-family: var(--mn-font); font-size: 0.88rem; border-bottom: 1px solid var(--mn-border-light); }
+        .crm-struct-pick-option:hover, .crm-struct-pick-option--selected { background: var(--mn-bg); }
+        .crm-struct-pick-option strong { display: block; font-weight: 600; }
+        .crm-struct-pick-option small { display: block; color: var(--mn-text-light); font-size: 0.78rem; margin-top: 0.1rem; }
+        .crm-struct-pick-empty { padding: 0.85rem; color: var(--mn-text-light); font-size: 0.85rem; }
+        .crm-struct-pick-footer { padding: 0.5rem 0.85rem 0.65rem; border-top: 1px solid var(--mn-border-light); background: #fafbfc; }
+        .crm-struct-pick-new { width: 100%; padding: 0.45rem 0.65rem; border: 1px dashed var(--mn-border); border-radius: var(--mn-radius); background: white; color: var(--mn-primary); font-size: 0.82rem; font-family: var(--mn-font); cursor: pointer; }
+        .crm-structure-card { margin-top: 0.5rem; }
+        .crm-structure-summary { padding: 0.85rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: #fafbfc; }
+        .crm-structure-summary-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem; }
+        .crm-structure-summary-line { font-size: 0.84rem; color: var(--mn-text-secondary); margin-top: 0.2rem; }
+        .crm-structures-browse-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .crm-structure-browse-card { border-left-color: #805ad5; }
+        .crm-label-optional { font-weight: 400; color: var(--mn-text-light); font-size: 0.82rem; }
+        .crm-prospect-standalone-fields { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--mn-border); }
+        .crm-delete-struct-options { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
+        .crm-delete-struct-option { display: flex; gap: 0.65rem; align-items: flex-start; padding: 0.85rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); cursor: pointer; background: #fafbfc; }
+        .crm-delete-struct-option input { margin-top: 0.2rem; flex-shrink: 0; }
+        .crm-delete-struct-option span { display: flex; flex-direction: column; gap: 0.2rem; }
+        .crm-delete-struct-option small { color: var(--mn-text-secondary); font-size: 0.82rem; line-height: 1.35; }
+        .crm-delete-struct-reassign { margin: 0.35rem 0 0 1.65rem; }

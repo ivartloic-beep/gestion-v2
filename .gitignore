@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.deploy-venv/
+**/node_modules/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+api/config.php
+api/config.local.php
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Logs & caches
+*.log
+npm-debug.log*
+.cache/
+dist/
+build/

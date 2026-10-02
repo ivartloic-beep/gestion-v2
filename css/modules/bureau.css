@@ -1,0 +1,339 @@
+        /* === MON BUREAU — Monday style === */
+        .bureau-page.module-home-page { z-index: 100; }
+        .bureau-tabs { display: flex; gap: 0; background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg) var(--mn-radius-lg) 0 0; padding: 0 1rem; margin-bottom: 0; }
+        .bureau-tab { padding: 0.85rem 1.2rem; font-size: 0.9rem; font-weight: 600; color: var(--mn-text-secondary); border: none; background: none; cursor: pointer; font-family: var(--mn-font); position: relative; transition: color var(--mn-transition); }
+        .bureau-tab.active { color: var(--mn-text); }
+        .bureau-tab.active::after { content: ''; position: absolute; bottom: 0; left: 0.5rem; right: 0.5rem; height: 2.5px; background: var(--mn-dark-blue); border-radius: 2px 2px 0 0; }
+        .bureau-tab:hover:not(.active) { color: var(--mn-text); }
+        .bureau-section { display: none; }
+        .bureau-section.active { display: block; }
+        .bureau-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+        .bureau-card h3 { margin-bottom: 1rem; font-size: 1.1rem; color: var(--mn-text); }
+        .bureau-subtabs { display: flex; gap: 0.25rem; margin-bottom: 1.25rem; background: var(--mn-bg); padding: 0.25rem; border-radius: var(--mn-radius); width: fit-content; }
+        .bureau-subtab { padding: 0.4rem 0.85rem; border-radius: 6px; border: none; background: transparent; color: var(--mn-text-secondary); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--mn-transition); }
+        .bureau-subtab.active { background: white; color: var(--mn-text); box-shadow: var(--mn-shadow-sm); }
+        .bureau-item { padding: 0.85rem 1rem; border-radius: var(--mn-radius-lg); background: white; border: 1px solid var(--mn-border); margin-bottom: 0.5rem; cursor: pointer; transition: all var(--mn-transition); display: flex; align-items: center; gap: 0.75rem; }
+        .bureau-item:hover { background: var(--mn-border-light); box-shadow: var(--mn-shadow-sm); border-color: var(--mn-border); }
+        .bureau-item-title { font-weight: 600; font-size: 0.9rem; color: var(--mn-text); }
+        .bureau-item-meta { font-size: 0.75rem; color: var(--mn-text-light); margin-top: 0.15rem; }
+        .bureau-empty { text-align: center; padding: 2.5rem 1rem; color: var(--mn-text-light); font-size: 0.9rem; }
+        .bureau-add-btn { width: 100%; padding: 0.85rem; border: 2px dashed var(--mn-border); border-radius: var(--mn-radius-lg); background: transparent; color: var(--mn-text-secondary); cursor: pointer; font-size: 0.9rem; transition: all var(--mn-transition); margin-top: 0.75rem; }
+        .bureau-add-btn:hover { border-color: var(--mn-dark-blue); color: var(--mn-dark-blue); background: var(--mn-blue-light); }
+        .bureau-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+        .bureau-section-header h3 { margin: 0; font-size: 1.05rem; color: var(--mn-text); font-weight: 600; }
+        .bureau-filters { display: flex; flex-direction: column; align-items: flex-start; gap: 0.65rem; margin-bottom: 1.25rem; }
+        .bureau-filters-row { display: flex; gap: 0.5rem; flex-wrap: wrap; width: 100%; }
+        .bureau-view-toggle { display: flex; gap: 0.25rem; background: var(--mn-bg); padding: 0.2rem; border-radius: var(--mn-radius); }
+        .bureau-view-btn { padding: 0.4rem 0.75rem; border: none; border-radius: 6px; background: transparent; color: var(--mn-text-secondary); font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: var(--mn-font); transition: all var(--mn-transition); }
+        .bureau-view-btn.active { background: white; color: var(--mn-text); box-shadow: var(--mn-shadow-sm); }
+        .bureau-view-btn:hover:not(.active) { color: var(--mn-text); }
+        .bureau-kanban-view.active { display: flex !important; flex-direction: column; }
+        .bureau-kanban-view .kanban-column { min-width: 260px; max-height: 65vh; }
+        .bureau-kanban-view .kanban-card { cursor: grab; }
+        .bureau-kanban-view .kanban-card.dragging { opacity: 0.5; cursor: grabbing; }
+        .bureau-kanban-board { display: flex; gap: 0.75rem; width: 100%; min-height: 480px; align-items: stretch; }
+        .bureau-kanban-main { display: flex; gap: 1rem; flex: 1; min-width: 0; overflow-x: auto; padding-bottom: 0.25rem; }
+        .bureau-kanban-done-rail {
+            flex-shrink: 0; display: flex; flex-direction: column;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 2px dashed #86efac; border-radius: 16px;
+            width: 76px; min-width: 76px; max-height: 65vh;
+        }
+        .bureau-kanban-done-header {
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            gap: 0.4rem; padding: 0.85rem 0.45rem; cursor: pointer; width: 100%;
+            font-family: var(--mn-font); color: #047857; font-weight: 700; font-size: 0.72rem; flex-shrink: 0;
+        }
+        .bureau-kanban-done-header:hover { background: rgba(16, 185, 129, 0.08); border-radius: 14px 14px 0 0; }
+        .bureau-kanban-done-toggle-icon { font-size: 1.25rem; line-height: 1; }
+        .bureau-kanban-done-toggle-count {
+            background: #d1fae5; color: #065f46; padding: 0.1rem 0.45rem;
+            border-radius: 999px; font-size: 0.72rem; font-weight: 700; min-width: 1.4rem; text-align: center;
+        }
+        .bureau-kanban-done-toggle-label {
+            writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); letter-spacing: 0.02em;
+        }
+        .bureau-kanban-done-drop-zone {
+            flex: 1; min-height: 120px; display: flex; align-items: center; justify-content: center;
+            padding: 0.35rem; margin: 0 0.35rem 0.5rem; border-radius: 10px;
+        }
+        .bureau-kanban-done-drop-zone.drag-over { background: rgba(16, 185, 129, 0.18); outline: 2px solid #34d399; }
+        .bureau-kanban-done-hint {
+            font-size: 0.62rem; color: #059669; text-align: center; font-weight: 600; line-height: 1.35;
+            writing-mode: vertical-rl; transform: rotate(180deg); pointer-events: none;
+        }
+        .bureau-tasks-search-wrap { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 0.35rem; }
+        .bureau-tasks-search-input {
+            width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius); font-size: 0.85rem; box-sizing: border-box;
+        }
+        .bureau-tasks-search-done-opt {
+            font-size: 0.78rem; color: var(--mn-text-secondary); display: flex; align-items: center; gap: 0.35rem; cursor: pointer;
+        }
+        .crm-activity-item--status .crm-activity-text { font-weight: 600; color: #047857; }
+        .bureau-kanban-card { position: relative; padding-right: 2rem !important; }
+        .kanban-card-done-btn {
+            position: absolute; top: 6px; right: 6px; width: 26px; height: 26px;
+            border: none; border-radius: 8px; background: #d1fae5; color: #047857;
+            font-size: 0.85rem; font-weight: 700; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.15s, background 0.15s; z-index: 2;
+        }
+        .bureau-kanban-card:hover .kanban-card-done-btn { opacity: 1; }
+        .kanban-card-done-btn:hover { background: #10b981; color: white; }
+        .bureau-task-item.status-in-progress { border-left-color: #3b82f6; }
+        .bureau-unified-status-badge { font-size: 0.72rem; padding: 0.12rem 0.45rem; border-radius: 6px; font-weight: 600; }
+        .bureau-unified-status-badge.status-in-progress { background: #dbeafe; color: #1d4ed8; }
+        .bureau-unified-status-badge.status-todo { background: #fef3c7; color: #b45309; }
+        .bureau-filters select { padding: 0.45rem 0.7rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.82rem; background: white; color: var(--mn-text); cursor: pointer; }
+        .bureau-filters select:focus { outline: none; border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .bureau-search { margin-bottom: 1.25rem; }
+        .bureau-search input { width: 100%; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); font-size: 0.9rem; background: var(--mn-bg); box-sizing: border-box; font-family: var(--mn-font); }
+        .bureau-search input:focus { outline: none; border-color: var(--mn-primary); background: white; box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .bureau-tasks-list, .bureau-notes-list, .bureau-ideas-list { min-height: 50px; }
+        .bureau-unified-task-dossier { font-size: 0.78rem; color: #2b6cb0; background: #bee3f820; padding: 0.15rem 0.5rem; border-radius: 6px; font-weight: 500; }
+        .bureau-unified-task-due { font-size: 0.78rem; color: var(--mn-text-light); }
+        .bureau-unified-task-due.overdue { color: #e53e3e; font-weight: 600; }
+        .bureau-unified-task-row .bureau-task-title { flex: 1; min-width: 0; }
+        .bureau-unified-tasks-list .bureau-task-item { align-items: flex-start; }
+        .bureau-unified-task-assignees { display: inline-flex; align-items: center; gap: 0.2rem; flex-wrap: wrap; }
+        .bureau-unified-task-assignees .task-assignee-badge { font-size: 0.68rem; padding: 0.1rem 0.35rem; }
+        .bureau-unified-completed-by { font-size: 0.72rem; color: var(--success, #16a34a); margin-top: 0.2rem; }
+        .bureau-task-checkbox--readonly { width: 1.1rem; text-align: center; font-size: 0.9rem; flex-shrink: 0; opacity: 0.85; }
+        .bureau-unified-task-row--readonly { cursor: default; }
+        .bureau-kanban-card--readonly { cursor: pointer; }
+        .bureau-kanban-assignees .task-assignee-badge { font-size: 0.65rem; padding: 0.08rem 0.3rem; }
+        .bureau-task-item { padding: 0.85rem 1rem; border-radius: var(--mn-radius-lg); background: white; border: 1px solid var(--mn-border); border-left: 3px solid var(--mn-border); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; transition: all var(--mn-transition); }
+        .bureau-task-item:hover { background: var(--mn-border-light); box-shadow: var(--mn-shadow-sm); }
+        .bureau-task-item.priority-high { border-left-color: var(--mn-red); }
+        .bureau-task-item.priority-medium { border-left-color: var(--mn-yellow); }
+        .bureau-task-item.priority-low { border-left-color: var(--mn-green); }
+        .bureau-task-item.status-done { opacity: 0.6; }
+        .bureau-task-item.status-done .bureau-task-title { text-decoration: line-through; }
+        .bureau-task-checkbox { cursor: pointer; width: 20px; height: 20px; accent-color: var(--mn-dark-blue); flex-shrink: 0; }
+        .bureau-task-content { flex: 1; cursor: pointer; }
+        .bureau-task-title { font-weight: 600; font-size: 0.92rem; color: var(--mn-text); }
+        .bureau-task-meta { font-size: 0.78rem; color: var(--mn-text-light); margin-top: 0.3rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+        .bureau-task-badge { padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.72rem; font-weight: 500; }
+        .bureau-view-toggle { display: flex; gap: 0.25rem; margin-bottom: 1.25rem; }
+        .bureau-view-toggle .view-btn { padding: 0.45rem 0.9rem; border: 1px solid var(--mn-border); background: white; color: var(--mn-text-secondary); font-size: 0.85rem; cursor: pointer; transition: all var(--mn-transition); }
+        .bureau-view-toggle .view-btn:first-child { border-radius: var(--mn-radius) 0 0 var(--mn-radius); }
+        .bureau-view-toggle .view-btn:last-child { border-radius: 0 var(--mn-radius) var(--mn-radius) 0; }
+        .bureau-view-toggle .view-btn.active { background: var(--mn-dark-blue); color: white; border-color: var(--mn-dark-blue); }
+        .bureau-kanban { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
+        .bureau-kanban-column { min-width: 280px; max-width: 320px; background: var(--mn-bg); border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1rem; flex-shrink: 0; }
+        .bureau-kanban-column h4 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--mn-text); display: flex; align-items: center; gap: 0.5rem; }
+        .bureau-kanban-column h4 .count { background: var(--mn-border-light); padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.8rem; font-weight: normal; }
+        .bureau-kanban-cards { display: flex; flex-direction: column; gap: 0.5rem; min-height: 80px; }
+
+        /* ========== ESPACE DE TRAVAIL (WORKSPACE) ========== */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            min-height: 100px;
+        }
+        @media (max-width: 768px) {
+            .workspace-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+        }
+        .workspace-card {
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            padding: 1rem;
+            cursor: pointer;
+            transition: all var(--mn-transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+            min-height: 120px;
+        }
+        .workspace-card:hover {
+            box-shadow: var(--mn-shadow);
+            border-color: var(--mn-dark-blue);
+            transform: translateY(-2px);
+        }
+        .workspace-card-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .workspace-card-title { font-weight: 600; font-size: 0.9rem; color: var(--mn-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .workspace-card-meta { font-size: 0.75rem; color: var(--mn-text-light); margin-top: auto; }
+        .workspace-card-type { font-size: 0.7rem; padding: 0.15rem 0.45rem; border-radius: 8px; font-weight: 500; background: var(--mn-bg); color: var(--mn-text-secondary); width: fit-content; }
+        .workspace-card-actions { position: absolute; top: 0.5rem; right: 0.5rem; display: none; }
+        .workspace-card:hover .workspace-card-actions { display: flex; gap: 0.25rem; }
+        .workspace-card-actions button { background: white; border: 1px solid var(--mn-border); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; transition: all var(--mn-transition); }
+        .workspace-card-actions button:hover { background: var(--mn-red-light); border-color: var(--mn-red); }
+        .ws-tag { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.72rem; font-weight: 500; background: var(--mn-purple-light); color: var(--mn-purple); }
+        .ws-tag-remove { cursor: pointer; font-size: 0.85rem; line-height: 1; opacity: 0.6; }
+        .ws-tag-remove:hover { opacity: 1; }
+        .workspace-create-menu { position: fixed; z-index: 5000; background: white; border-radius: var(--mn-radius-lg); box-shadow: var(--mn-shadow-lg); border: 1px solid var(--mn-border); padding: 0.5rem; width: 280px; max-height: 400px; overflow-y: auto; }
+        .workspace-create-option { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; border-radius: var(--mn-radius); cursor: pointer; transition: background var(--mn-transition); }
+        .workspace-create-option:hover { background: var(--mn-bg); }
+        .workspace-create-icon { font-size: 1.3rem; flex-shrink: 0; }
+        .workspace-create-label { font-weight: 600; font-size: 0.9rem; color: var(--mn-text); }
+        .workspace-create-desc { font-size: 0.78rem; color: var(--mn-text-light); margin-top: 0.1rem; }
+        .workspace-empty { grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--mn-text-light); }
+        .workspace-empty-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+        .workspace-empty-text { font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .workspace-empty-hint { font-size: 0.82rem; }
+        .drawing-tool { width: 34px; height: 34px; border: 1px solid var(--mn-border); background: white; border-radius: 8px; cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; transition: all var(--mn-transition); }
+        .drawing-tool:hover { background: var(--mn-border-light); }
+        .drawing-tool.active { background: var(--mn-dark-blue); color: white; border-color: var(--mn-dark-blue); }
+        .mindmap-node { cursor: pointer; transition: all 0.15s ease; }
+        .mindmap-node:hover { filter: brightness(0.95); }
+        .mindmap-node.selected rect, .mindmap-node.selected ellipse { stroke: var(--mn-dark-blue); stroke-width: 3; }
+        .mindmap-link { fill: none; stroke: var(--mn-text-light); stroke-width: 2; }
+        /* Drag & drop workspace bureau */
+        .workspace-card.workspace-card--draggable { cursor: grab; }
+        .workspace-card.ws-dragging { opacity: 0.55; cursor: grabbing; }
+        .ws-drop-zone.drag-over {
+            outline: 2px dashed var(--mn-dark-blue, #1e3a5f);
+            background: rgba(30, 58, 95, 0.07);
+        }
+        .workspace-card.workspace-folder.ws-drop-zone.drag-over {
+            border-color: var(--mn-dark-blue, #1e3a5f);
+            transform: translateY(-2px);
+        }
+        .ws-root-drop {
+            margin-left: auto;
+            padding: 0.35rem 0.65rem;
+            border-radius: 8px;
+            border: 1px dashed var(--mn-border);
+            font-size: 0.78rem;
+            color: var(--mn-text-light);
+            white-space: nowrap;
+        }
+        .ws-root-drop.drag-over {
+            color: var(--mn-dark-blue);
+            border-color: var(--mn-dark-blue);
+        }
+        .workspace-empty.ws-drop-zone.drag-over {
+            border-radius: var(--mn-radius-lg);
+        }
+        .ws-grid-root-drop {
+            grid-column: 1 / -1;
+            margin-top: 0.35rem;
+            padding: 0.85rem 1rem;
+            border-radius: var(--mn-radius);
+            border: 1px dashed var(--mn-border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--mn-text-light);
+        }
+        .ws-grid-root-drop.drag-over {
+            color: var(--mn-dark-blue);
+            border-color: var(--mn-dark-blue);
+            background: rgba(30, 58, 95, 0.07);
+        }
+
+        /* Dossier workspace */
+        .workspace-card.workspace-folder {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border: 2px solid var(--mn-blue);
+            min-height: 100px;
+        }
+        .workspace-card.workspace-folder:hover {
+            border-color: var(--mn-dark-blue);
+            box-shadow: 0 6px 20px rgba(0,115,234,0.15);
+        }
+        .workspace-folder-count {
+            font-size: 0.78rem;
+            color: var(--mn-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .workspace-card--shared { border-color: #93c5fd; background: linear-gradient(180deg, #f8fbff 0%, white 70%); }
+        .workspace-card-share-badge {
+            font-size: 0.68rem; font-weight: 600; color: #1d4ed8;
+            background: #dbeafe; border-radius: 999px; padding: 0.12rem 0.45rem;
+            width: fit-content; margin: 0.15rem 0;
+        }
+        .ws-editor-readonly-banner {
+            margin: 0 1rem 0.75rem; padding: 0.55rem 0.85rem; border-radius: 8px;
+            background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412;
+            font-size: 0.85rem; text-align: center;
+        }
+
+        /* Note/Idée editor page */
+        .editor-page { position: fixed; top: 0; left: 260px; right: 0; bottom: 0; background: var(--mn-bg); z-index: 200; overflow-y: auto; display: none; }
+        .editor-page.active { display: block; }
+        @media (max-width: 768px) { .editor-page { left: 0; } }
+        .editor-wrapper { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem; }
+        .editor-top-bar { display: flex; align-items: center; margin-bottom: 1rem; }
+        .editor-top-bar .btn-retour { background: white; color: var(--mn-text); border: 1px solid var(--mn-border); padding: 0.45rem 0.9rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; }
+        .editor-top-bar .btn-retour:hover { background: var(--mn-border-light); }
+        .editor-title-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+        .editor-title-row input { flex: 1; font-size: 1.25rem; font-weight: 600; padding: 0.75rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); background: white; outline: none; color: var(--mn-text); font-family: var(--mn-font); }
+        .editor-title-row input:focus { border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }
+        .editor-title-row .btn-save-top { background: var(--mn-dark-blue); color: white; border: none; padding: 0.75rem 1.2rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; }
+        .editor-title-row .btn-save-top:hover { background: #0060c2; }
+        .editor-main-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 0; overflow: hidden; margin-bottom: 1rem; }
+        .editor-toolbar { display: flex; gap: 0.25rem; padding: 0.6rem 1rem; background: var(--mn-bg); border-bottom: 1px solid var(--mn-border); flex-wrap: wrap; }
+        .editor-toolbar button { padding: 0.4rem 0.65rem; border: none; background: transparent; cursor: pointer; border-radius: 6px; font-size: 0.9rem; color: var(--mn-text-secondary); transition: all var(--mn-transition); }
+        .editor-toolbar button:hover { background: var(--mn-border-light); color: var(--mn-text); }
+        .editor-toolbar .separator { width: 1px; height: 20px; background: var(--mn-border); margin: 0 0.25rem; align-self: center; }
+        .editor-content { min-height: 350px; padding: 1.25rem 1.5rem; outline: none; font-size: 1rem; line-height: 1.7; color: var(--mn-text); font-family: var(--mn-font); }
+        .editor-content .msg-mention-chip { display: inline; user-select: none; }
+        .mention-field-editable {
+            min-height: 5.5rem; overflow-y: auto; white-space: pre-wrap; word-break: break-word;
+            outline: none;
+        }
+        .mention-field-editable .msg-mention-chip { display: inline; user-select: none; }
+        .ws-quicknote-preview {
+            width: 100%; min-height: 350px; padding: 1.25rem; border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg); font-size: 0.95rem; line-height: 1.7; color: var(--mn-text);
+            background: white; white-space: pre-wrap; word-break: break-word;
+        }
+        .editor-content:empty::before { content: attr(placeholder); color: var(--mn-text-light); font-style: italic; }
+        .editor-attachments { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1rem 1.5rem; margin-bottom: 1.25rem; border-left: 4px solid var(--mn-primary); }
+        .editor-attachments h4 { margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--mn-text); display: flex; align-items: center; gap: 0.4rem; }
+        .editor-attachments .empty-msg { color: var(--mn-text-light); font-size: 0.85rem; font-style: italic; }
+        .ws-attachment-add-row { margin-top: 0.65rem; }
+        .ws-attachment-item {
+            display: flex; align-items: center; gap: 0.55rem; padding: 0.65rem 0.75rem;
+            background: var(--mn-bg); border: 1px solid var(--mn-border); border-radius: var(--mn-radius);
+            margin-bottom: 0.45rem; transition: background 0.15s, border-color 0.15s;
+        }
+        .ws-attachment-item:hover { background: #f1f5f9; border-color: #cbd5e1; }
+        .ws-attachment-icon { font-size: 1.25rem; flex-shrink: 0; }
+        .ws-attachment-name-btn {
+            flex: 1; min-width: 0; text-align: left; border: none; background: none; padding: 0;
+            font-size: 0.9rem; font-weight: 600; color: var(--mn-primary); cursor: pointer;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .ws-attachment-name-btn:hover { text-decoration: underline; }
+        .ws-attachment-size {
+            font-size: 0.72rem; color: var(--mn-text-secondary); background: var(--mn-border-light);
+            padding: 0.15rem 0.45rem; border-radius: 999px; flex-shrink: 0;
+        }
+        .ws-attachment-actions { display: flex; gap: 0.35rem; flex-shrink: 0; }
+        .ws-attachment-btn {
+            border: 1px solid transparent; background: white; cursor: pointer; padding: 0.28rem 0.5rem;
+            border-radius: 6px; font-size: 0.78rem; transition: all 0.15s;
+        }
+        .ws-attachment-btn-open { background: #e0f2fe; color: #0284c7; border-color: #bae6fd; }
+        .ws-attachment-btn-open:hover { background: #0284c7; color: white; }
+        .ws-attachment-btn-rename:hover { background: var(--mn-border-light); }
+        .ws-attachment-btn-remove:hover { background: #fee2e2; border-color: #fecaca; }
+        .ws-attachment-preview-modal.active { z-index: 10060 !important; }
+        .ws-attachment-preview-modal .attachment-preview-modal { max-width: 920px; width: 95vw; max-height: 90vh; display: flex; flex-direction: column; }
+        .ws-attachment-preview-modal .preview-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+        .ws-attachment-preview-modal .preview-header h3 { margin: 0; font-size: 1rem; word-break: break-word; }
+        .ws-attachment-preview-modal .preview-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+        .ws-attachment-preview-modal .preview-content { flex: 1; min-height: 200px; overflow: auto; background: #f8fafc; border-radius: var(--mn-radius); border: 1px solid var(--mn-border); }
+        .ws-attachment-preview-modal .preview-image { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .ws-attachment-preview-modal .preview-pdf { width: 100%; min-height: 70vh; border: none; }
+        .ws-attachment-preview-modal .preview-unsupported { text-align: center; padding: 2.5rem 1.5rem; color: var(--mn-text-secondary); }
+        .ws-attachment-preview-modal .preview-unsupported-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+        .editor-bottom-bar { display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; padding: 0.5rem 0; }
+        .editor-bottom-bar .btn-unimport { margin-right: auto; background: white; color: #c05621; border: 1px solid #ed8936; padding: 0.65rem 1.2rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+        .editor-bottom-bar .btn-unimport:hover { background: #fffaf0; border-color: #c05621; }
+        .editor-bottom-bar .btn-annuler { background: white; color: var(--mn-text); border: 1px solid var(--mn-border); padding: 0.65rem 1.2rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+        .editor-bottom-bar .btn-annuler:hover { background: var(--mn-border-light); }
+        .editor-bottom-bar .btn-save { background: var(--mn-dark-blue); color: white; border: none; padding: 0.65rem 1.2rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; }
+        .editor-bottom-bar .btn-save:hover { background: #0060c2; }
+        .editor-bottom-bar .btn-save-close { background: var(--mn-primary); color: white; border: none; padding: 0.65rem 1.2rem; border-radius: var(--mn-radius); font-weight: 600; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; }
+        .editor-bottom-bar .btn-save-close:hover { background: var(--mn-primary-hover); }
+        .editor-status-row { margin-bottom: 1rem; }
+        .editor-status-row select { padding: 0.5rem 0.8rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); background: white; font-size: 0.9rem; color: var(--mn-text); outline: none; cursor: pointer; font-family: var(--mn-font); }
+        .editor-status-row select:focus { border-color: var(--mn-primary); box-shadow: 0 0 0 3px rgba(97,97,255,0.12); }

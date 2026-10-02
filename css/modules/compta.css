@@ -1,0 +1,1458 @@
+        /* ========== MODULE COMPTABILITÉ — Monday style ========== */
+        .compta-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 260px;
+            right: 0;
+            bottom: 0;
+            background: var(--mn-bg);
+            z-index: 100;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .compta-page { left: 0; padding: 1rem; padding-top: 60px; }
+        }
+
+        .compta-page.active { display: block; }
+
+        .compta-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: var(--mn-radius-lg);
+            border: 1px solid var(--mn-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .compta-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .compta-header h2 {
+            font-family: var(--mn-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--mn-text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .compta-header-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+        .compta-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .compta-stat {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--mn-radius-lg);
+            text-align: center;
+            border: 1px solid var(--mn-border);
+            border-left: 3px solid var(--mn-text-secondary);
+        }
+
+        .compta-stat.credit {
+            background: var(--mn-green-light);
+            border-left-color: var(--mn-green);
+        }
+
+        .compta-stat.debit {
+            background: var(--mn-red-light);
+            border-left-color: var(--mn-red);
+        }
+
+        .compta-stat.tva {
+            background: var(--mn-blue-light);
+            border-left-color: var(--mn-blue);
+        }
+
+        .compta-stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--mn-text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .compta-stat-value { font-size: 1.3rem; font-weight: 700; color: var(--mn-text); }
+
+        .compta-stat.credit .compta-stat-value { color: #00854d; }
+        .compta-stat.debit .compta-stat-value { color: var(--mn-red); }
+        .compta-stat.tva .compta-stat-value { color: var(--mn-dark-blue); }
+
+        .compta-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 1rem 0;
+            border-top: 1px solid var(--mn-border);
+            margin-top: 1rem;
+        }
+
+        .compta-filters select,
+        .compta-filters input[type="text"],
+        .compta-filters input[type="month"] {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            font-size: 0.9rem;
+            background: white;
+            font-family: var(--mn-font);
+            transition: all var(--mn-transition);
+        }
+
+        .compta-filters select:focus,
+        .compta-filters input:focus {
+            outline: none;
+            border-color: var(--mn-primary);
+            box-shadow: 0 0 0 3px rgba(97,97,255,0.12);
+        }
+
+        .compta-tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+            background: var(--mn-bg);
+            padding: 0.25rem;
+            border-radius: var(--mn-radius);
+            width: fit-content;
+        }
+
+        .compta-tab {
+            padding: 0.5rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--mn-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all var(--mn-transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--mn-font);
+        }
+
+        .compta-tab:hover { color: var(--mn-text); }
+
+        .compta-tab.active {
+            background: white;
+            color: var(--mn-text);
+            box-shadow: var(--mn-shadow-sm);
+        }
+
+        .compta-tab-badge {
+            background: var(--mn-border-light);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        .compta-tab.active .compta-tab-badge {
+            background: var(--mn-border);
+        }
+
+        .compta-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--mn-radius-lg);
+            border: 1px solid var(--mn-border);
+            min-height: 400px;
+        }
+
+        .compta-table-container { overflow-x: auto; }
+
+        .compta-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .compta-table th {
+            background: var(--mn-bg);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--mn-text-secondary);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid var(--mn-border);
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .compta-table th.sortable { cursor: pointer; user-select: none; }
+
+        .compta-table th.sortable:hover { background: var(--mn-border-light); }
+
+        .compta-table th .sort-icon {
+            margin-left: 0.3rem;
+            opacity: 0.5;
+        }
+
+        .compta-table th.sorted .sort-icon {
+            opacity: 1;
+        }
+
+        .compta-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--mn-border-light);
+            vertical-align: middle;
+            color: var(--mn-text);
+        }
+
+        .compta-table tbody tr {
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .compta-table tbody tr:hover {
+            background: #f8f9fd;
+        }
+
+        .compta-table tbody tr.selected {
+            background: var(--mn-blue-light);
+        }
+
+        /* Groupement par date */
+        .compta-date-group {
+            background: var(--mn-bg);
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: var(--mn-text);
+            border-bottom: 1px solid var(--mn-border);
+            position: sticky;
+            top: 45px;
+            z-index: 5;
+        }
+
+        /* Montants */
+        .compta-amount {
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+        }
+
+        .compta-amount.credit {
+            color: #28a745;
+        }
+
+        .compta-amount.debit {
+            color: #dc3545;
+        }
+
+        .compta-amount-ht,
+        .compta-amount-tva {
+            font-size: 0.85rem;
+            color: #636e72;
+        }
+
+        .compta-taux {
+            background: #e9ecef;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        /* Statut rapprochement */
+        .compta-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .compta-status.rapproche {
+            background: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+        }
+
+        .compta-status.en-attente {
+            background: rgba(255, 193, 7, 0.15);
+            color: #d39e00;
+        }
+
+        .compta-status.non-rapproche {
+            background: rgba(220, 53, 69, 0.15);
+            color: #dc3545;
+        }
+
+        /* Libellé transaction */
+        .compta-libelle {
+            max-width: 300px;
+        }
+
+        .compta-libelle-text {
+            font-weight: 500;
+            color: var(--text);
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compta-libelle-cat {
+            font-size: 0.75rem;
+            color: #636e72;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.2rem;
+        }
+
+        .compta-category-badge {
+            background: var(--mn-blue-light);
+            color: var(--mn-dark-blue);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Justificatif icône */
+        .compta-justif-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .compta-justif-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .compta-justif-icon.has-justif {
+            color: #28a745;
+        }
+
+        .compta-justif-icon.no-justif {
+            color: #dc3545;
+            opacity: 0.5;
+        }
+
+        /* Liste justificatifs en attente - FORMAT LISTE */
+        .compta-justifs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .compta-justifs-list-header {
+            display: grid;
+            grid-template-columns: 32px 1.5fr 1fr 0.8fr 0.8fr 1fr auto;
+            gap: 0.75rem;
+            padding: 0.6rem 1rem;
+            background: #f1f5f9;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            align-items: center;
+        }
+
+        .compta-justif-row {
+            display: grid;
+            grid-template-columns: 32px 1.5fr 1fr 0.8fr 0.8fr 1fr auto;
+            gap: 0.75rem;
+            padding: 0.65rem 1rem;
+            background: white;
+            border-bottom: 1px solid #f1f5f9;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            font-size: 0.88rem;
+        }
+
+        .compta-justif-row:hover {
+            background: #f8fafc;
+        }
+
+        .compta-justif-row:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .compta-justif-row-icon {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .compta-justif-row-thumb {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .compta-justif-row-name {
+            font-weight: 600;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compta-justif-row-sub {
+            font-size: 0.78rem;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compta-justif-row-amount {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .compta-justif-row-tva-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            font-size: 0.8rem;
+        }
+
+        .compta-justif-row-tva-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .compta-justif-row-tva-tag {
+            display: inline-block;
+            background: #eef2ff;
+            color: #667eea;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .compta-justif-row-actions {
+            display: flex;
+            gap: 0.3rem;
+            opacity: 0.5;
+            transition: opacity 0.15s;
+        }
+
+        .compta-justif-row:hover .compta-justif-row-actions {
+            opacity: 1;
+        }
+
+        .compta-justif-row-actions button {
+            padding: 0.25rem 0.4rem;
+            font-size: 0.78rem;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .compta-justif-row-actions button:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .compta-justif-row-actions .compta-reanalyze-btn {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+            position: relative;
+        }
+        .compta-justif-row-actions .compta-reanalyze-btn:hover {
+            background: #e0e7ff;
+            border-color: #a5b4fc;
+        }
+        .compta-justif-row-actions .compta-reanalyze-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .compta-justif-row-actions .compta-reanalyze-btn.loading::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 2px solid transparent;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .compta-justifs-list-header {
+                display: none;
+            }
+            .compta-justif-row {
+                grid-template-columns: 32px 1fr auto auto;
+                gap: 0.5rem;
+                padding: 0.75rem 0.75rem;
+            }
+            .compta-justif-row-tva,
+            .compta-justif-row-date,
+            .compta-justif-row-ocr-mobile-hide {
+                display: none;
+            }
+        }
+
+        /* Legacy card classes kept for compatibility */
+        .compta-justif-card-icon { font-size: 2rem; flex-shrink: 0; }
+        .compta-justif-card-name { font-weight: 600; color: var(--primary); }
+        .compta-justif-card-amount { font-weight: 600; color: var(--accent); }
+
+        /* Badge indicateur traitement OCR/IA */
+        .ocr-processing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--mn-dark-blue);
+            animation: ocrPulse 1.5s ease-in-out infinite;
+        }
+        .ocr-processing-badge .ocr-spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .btn-upload-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        .ocr-pending-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #e67e22;
+            background: #fef3e2;
+        }
+        .ocr-failed-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #e74c3c;
+            background: #fde8e8;
+        }
+        .ocr-completed-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #27ae60;
+            background: #e8f8ef;
+        }
+        @keyframes ocrPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.03); }
+        }
+
+        /* Récap TVA */
+        
+        /* Multi-TVA lignes */
+        .multi-tva-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .multi-tva-header {
+            display: grid;
+            grid-template-columns: 1fr 100px 90px 80px 36px;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: #f1f5f9;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            align-items: center;
+        }
+        .multi-tva-line {
+            display: grid;
+            grid-template-columns: 1fr 100px 90px 80px 36px;
+            gap: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+            align-items: center;
+        }
+        .multi-tva-line:last-of-type {
+            border-bottom: none;
+        }
+        .multi-tva-line input,
+        .multi-tva-line select {
+            padding: 0.35rem 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            width: 100%;
+            background: white;
+        }
+        .multi-tva-line input:focus,
+        .multi-tva-line select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .multi-tva-remove {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: #fee2e2;
+            color: #ef4444;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+        .multi-tva-remove:hover {
+            background: #fecaca;
+        }
+        .multi-tva-add {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            padding: 0.45rem 0.75rem;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 0 0 10px 10px;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+        .multi-tva-add:hover {
+            background: #eef2ff;
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .multi-tva-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-top: 2px solid #e2e8f0;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .multi-tva-total-value {
+            color: var(--accent);
+        }
+
+        .compta-tva-recap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .compta-tva-section {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .compta-tva-section-header {
+            background: var(--mn-bg);
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--mn-text);
+            border-bottom: 1px solid var(--mn-border);
+        }
+
+        .compta-tva-section.collectee .compta-tva-section-header {
+            background: var(--mn-green-light);
+        }
+
+        .compta-tva-section.deductible .compta-tva-section-header {
+            background: var(--mn-red-light);
+        }
+
+        .compta-tva-rows {
+            padding: 0.5rem;
+        }
+
+        .compta-tva-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 1fr;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+            align-items: center;
+        }
+
+        .compta-tva-row:last-child {
+            border-bottom: none;
+        }
+
+        .compta-tva-row.total {
+            background: #f8f9fa;
+            font-weight: 700;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .compta-tva-taux {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .compta-tva-result {
+            background: var(--mn-dark-blue);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .compta-tva-result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .compta-tva-result-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Modal détail transaction */
+        .compta-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .compta-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compta-detail-section {
+            background: var(--mn-bg);
+            padding: 1rem;
+            border-radius: var(--mn-radius);
+        }
+
+        .compta-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--mn-text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .compta-detail-amounts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .compta-detail-amount-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .compta-detail-amount-label {
+            font-size: 0.7rem;
+            color: #636e72;
+            text-transform: uppercase;
+        }
+
+        .compta-detail-amount-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        /* Dropzone upload */
+        .compta-dropzone {
+            border: 2px dashed #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fafbfc;
+        }
+
+        .compta-dropzone:hover,
+        .compta-dropzone.dragover {
+            border-color: var(--mn-primary);
+            background: var(--mn-blue-light);
+        }
+
+        .compta-dropzone-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compta-dropzone-text {
+            color: var(--mn-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .compta-dropzone-text strong {
+            color: var(--mn-dark-blue);
+        }
+
+        /* Preview justificatif dans modal */
+        .compta-justif-preview {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            #justifPreviewLayout {
+                grid-template-columns: 1fr !important;
+                height: auto !important;
+                max-height: calc(90vh - 120px);
+                overflow-y: auto;
+            }
+            #justifPreviewContent {
+                min-height: 250px !important;
+                max-height: 50vh;
+            }
+        }
+
+        .compta-justif-preview-header {
+            background: #f8f9fa;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .compta-justif-preview-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .compta-justif-preview-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .compta-justif-preview-content {
+            padding: 1rem;
+            background: #fafbfc;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compta-justif-preview-img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
+
+        .compta-justif-ocr-data {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .compta-justif-ocr-data h5 {
+            font-size: 0.85rem;
+            color: #636e72;
+            margin-bottom: 0.5rem;
+        }
+
+        .compta-justif-ocr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .compta-justif-ocr-item {
+            background: rgba(40, 167, 69, 0.1);
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .compta-justif-ocr-item.mismatch {
+            background: rgba(255, 193, 7, 0.15);
+        }
+
+        /* Empty state */
+        .compta-empty {
+            text-align: center;
+            padding: 3rem;
+            color: #636e72;
+        }
+
+        .compta-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .compta-empty-text {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compta-empty-hint {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Badge justificatif lié */
+        .compta-linked-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Actions rapides */
+        .compta-quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .compta-table tbody tr:hover .compta-quick-actions {
+            opacity: 1;
+        }
+
+        .compta-quick-action {
+            padding: 0.3rem 0.5rem;
+            border: none;
+            background: #f1f5f9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .compta-quick-action:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Rapprochement auto */
+        .compta-match-item {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            margin-bottom: 0.5rem;
+            background: white;
+        }
+        .compta-match-score {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .compta-match-eleve { background: rgba(40, 167, 69, 0.2); color: #28a745; }
+        .compta-match-moyen { background: rgba(255, 193, 7, 0.2); color: #d39e00; }
+        .compta-match-faible { background: rgba(108, 117, 125, 0.2); color: #6c757d; }
+
+        /* Règles */
+        .compta-regle-row td { padding: 0.75rem 1rem; }
+
+        /* Factures */
+        .compta-facture-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            margin-bottom: 0.5rem;
+            background: white;
+        }
+        .facture-retard { border-left: 4px solid var(--mn-red); }
+        .facture-retard-label { color: var(--mn-red); font-size: 0.85rem; }
+
+        /* Notes de frais */
+        .ndf-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .ndf-card {
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            padding: 1.25rem;
+            transition: all var(--mn-transition);
+        }
+        .ndf-card:hover { box-shadow: var(--mn-shadow-sm); }
+        .ndf-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .ndf-card-statut {
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .ndf-statut-brouillon { background: var(--mn-border-light); color: var(--mn-text-secondary); }
+        .ndf-statut-soumise { background: var(--mn-blue-light); color: var(--mn-blue); }
+        .ndf-statut-approuvee { background: rgba(40, 167, 69, 0.15); color: #28a745; }
+        .ndf-statut-rejetee { background: rgba(220, 53, 69, 0.15); color: var(--mn-red); }
+        .ndf-statut-remboursee { background: #e7f5ff; color: #1971c2; }
+        .ndf-card-meta { font-size: 0.85rem; color: var(--mn-text-secondary); margin-bottom: 0.25rem; }
+        .ndf-card-total { font-weight: 700; margin-bottom: 0.75rem; }
+        .ndf-card-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .ndf-ligne-row {
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: var(--mn-bg);
+        }
+        .ndf-ligne-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .ndf-ligne-type { width: 140px; flex-shrink: 0; }
+        .ndf-ligne-desc { flex: 1 1 200px; min-width: 160px; }
+        .ndf-ligne-autre-detail { flex: 1 1 160px; min-width: 140px; }
+        .ndf-ligne-standard-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .ndf-ligne-ttc { width: 110px; }
+        .ndf-ligne-tva { width: 72px; }
+        .ndf-ligne-tva-calc { font-size: 0.8rem; color: var(--mn-text-secondary); white-space: nowrap; }
+        .ndf-ligne-km-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .ndf-ligne-km { width: 110px; }
+        .ndf-ligne-km-montant { font-weight: 600; min-width: 70px; }
+        .ndf-ligne-km-hint { font-size: 0.8rem; color: var(--mn-text-secondary); }
+        @media (max-width: 768px) {
+            .ndf-ligne-fields { flex-direction: column; align-items: stretch; }
+            .ndf-ligne-type, .ndf-ligne-ttc, .ndf-ligne-km { width: 100%; }
+        }
+        .ndf-justif-upload { display: flex; align-items: center; gap: 0.5rem; }
+        .ndf-justif-upload .ndf-justif-name { font-size: 0.8rem; color: var(--mn-text-secondary); max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
+
+        /* Page dépôt justificatifs (vue simplifiée) */
+        .depot-justifs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .depot-justif-card {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            box-shadow: var(--mn-shadow-sm);
+        }
+        .depot-justif-card-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            width: 2.5rem;
+            text-align: center;
+        }
+        .depot-justif-card-body { flex: 1; min-width: 0; }
+        .depot-justif-card-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .depot-facture-statut {
+            padding: 0.2rem 0.55rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .depot-facture-statut-attente { background: #fff8e6; color: #b8860b; }
+        .depot-facture-statut-a-payer { background: rgba(0, 123, 255, 0.12); color: #007bff; }
+        .depot-facture-statut-payee { background: rgba(40, 167, 69, 0.15); color: #28a745; }
+        .depot-facture-statut-refusee { background: rgba(220, 53, 69, 0.12); color: var(--mn-red); }
+        .depot-justif-card-title {
+            font-weight: 600;
+            color: var(--mn-text);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .depot-justif-card-meta {
+            font-size: 0.82rem;
+            color: var(--mn-text-secondary);
+            margin-top: 0.15rem;
+        }
+        .depot-justif-card-actions {
+            display: flex;
+            gap: 0.35rem;
+            flex-shrink: 0;
+        }
+        .depot-justif-card-actions .btn {
+            padding: 0.35rem 0.55rem;
+            font-size: 0.85rem;
+        }
+
+        /* Section validation (hub comptabilité) */
+        .compta-validation-section {
+            margin-top: 0;
+            text-align: left;
+        }
+        .compta-validation-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--mn-text);
+            margin: 0 0 0.75rem;
+        }
+        .compta-validation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .compta-validation-card {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            box-shadow: var(--mn-shadow-sm);
+        }
+        .compta-validation-card-main {
+            flex: 1;
+            min-width: 0;
+        }
+        .compta-validation-card-title {
+            font-weight: 600;
+            color: var(--mn-text);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .compta-validation-card-meta {
+            font-size: 0.82rem;
+            color: var(--mn-text-secondary);
+            margin-top: 0.15rem;
+        }
+        .compta-validation-card-total {
+            font-weight: 700;
+            color: var(--mn-text);
+            margin-top: 0.25rem;
+            font-size: 0.95rem;
+        }
+        .compta-validation-card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            flex-shrink: 0;
+            justify-content: flex-end;
+        }
+        .compta-validation-card-actions .btn {
+            padding: 0.35rem 0.6rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .compta-validation-empty {
+            font-size: 0.9rem;
+            color: var(--mn-text-secondary);
+            padding: 0.75rem 0;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .compta-validation-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .compta-validation-card-actions {
+                justify-content: stretch;
+            }
+            .compta-validation-card-actions .btn {
+                flex: 1;
+            }
+        }
+
+        .compta-validation-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+        }
+        .compta-validation-echeance-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+        .compta-validation-echeance-tabs .compta-tab-sm {
+            font-size: 0.82rem;
+            padding: 0.4rem 0.65rem;
+        }
+        .compta-validation-periode-picker {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem 1.25rem;
+            margin-bottom: 0.75rem;
+            padding: 0.55rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: var(--mn-radius);
+            border: 1px solid var(--mn-border);
+            font-size: 0.88rem;
+        }
+        .compta-validation-periode-picker label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--mn-text-secondary);
+        }
+        .compta-validation-periode-picker input[type="date"] {
+            padding: 0.35rem 0.5rem;
+            border: 1px solid var(--mn-border);
+            border-radius: 6px;
+            font-size: 0.88rem;
+        }
+        .compta-validation-total-bar {
+            padding: 0.65rem 0.85rem;
+            margin-bottom: 0.85rem;
+            background: #f0f4f8;
+            border-radius: var(--mn-radius);
+            border: 1px solid var(--mn-border);
+            font-size: 0.92rem;
+            color: var(--mn-text);
+        }
+        .compta-validation-total-bar:empty {
+            display: none;
+        }
+        .validation-hub-page .home-welcome {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .compta-validation-tabs .compta-tab {
+            position: relative;
+        }
+        .compta-tab-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.25rem;
+            height: 1.25rem;
+            padding: 0 0.35rem;
+            margin-left: 0.35rem;
+            border-radius: 999px;
+            background: var(--mn-red, #c0392b);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .compta-validation-card-clickable {
+            cursor: pointer;
+            transition: box-shadow 0.15s ease, border-color 0.15s ease;
+        }
+        .compta-validation-card-clickable:hover {
+            border-color: var(--mn-primary, #6c5ce7);
+            box-shadow: var(--mn-shadow-md, 0 4px 12px rgba(0,0,0,0.08));
+        }
+        .depot-facture-echeance-overdue {
+            color: var(--mn-red);
+            font-weight: 600;
+        }
+        .compta-detail-modal h2 {
+            margin: 0;
+            font-size: 1.35rem;
+        }
+        .compta-detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .compta-detail-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-bottom: 1rem;
+        }
+        .compta-detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--mn-border);
+            font-size: 0.92rem;
+        }
+        .compta-detail-label {
+            color: var(--mn-text-secondary);
+            flex-shrink: 0;
+        }
+        .compta-detail-value {
+            text-align: right;
+            color: var(--mn-text);
+            word-break: break-word;
+        }
+        .compta-detail-row-error .compta-detail-value { color: var(--mn-red); }
+        .compta-detail-row-overdue .compta-detail-value { color: var(--mn-red); font-weight: 600; }
+        .compta-detail-section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        .compta-detail-lignes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+        }
+        .compta-detail-ligne {
+            padding: 0.65rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: var(--mn-radius);
+            border: 1px solid var(--mn-border);
+        }
+        .compta-detail-ligne-head { margin-bottom: 0.2rem; }
+        .compta-detail-ligne-num { color: var(--mn-text-secondary); }
+        .compta-detail-ligne-desc { font-size: 0.88rem; color: var(--mn-text-secondary); }
+        .compta-detail-ligne-montant { font-size: 0.88rem; font-weight: 600; margin-top: 0.25rem; }
+        .compta-detail-total {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        .compta-detail-rejet {
+            padding: 0.75rem;
+            background: rgba(220, 53, 69, 0.08);
+            border-radius: var(--mn-radius);
+            color: var(--mn-red);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .ndf-detail-justificatifs-wrap {
+            margin-bottom: 1rem;
+        }
+        .ndf-detail-justificatifs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .ndf-detail-justif-item {
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        .ndf-detail-justif-title {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            background: white;
+            border-bottom: 1px solid var(--mn-border);
+        }
+        .ndf-detail-justif-iframe {
+            display: block;
+            width: 100%;
+            height: 420px;
+            border: none;
+            background: #525659;
+        }
+        .ndf-detail-justif-img {
+            display: block;
+            max-width: 100%;
+            max-height: 480px;
+            margin: 0 auto;
+            object-fit: contain;
+            background: #525659;
+        }
+        .ndf-detail-justif-loading,
+        .ndf-detail-justif-error {
+            font-size: 0.9rem;
+            color: var(--mn-text-secondary);
+            padding: 0.5rem 0;
+        }
+        .ndf-detail-justif-error { color: var(--mn-red); }
+        .ndf-detail-modal {
+            max-height: 92vh;
+            overflow-y: auto;
+        }

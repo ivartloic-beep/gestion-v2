@@ -1,0 +1,27 @@
+{
+    "transactions": [],
+    "justificatifs": [
+        {
+            "id": "justif_1769953668052_9prn52q6z",
+            "nomFichier": "1000064445.jpg",
+            "type": "image",
+            "fileType": "image\/jpeg",
+            "montantTTC": 500,
+            "montantHT": 416.67,
+            "montantTVA": 83.33,
+            "tauxTVA": 20,
+            "dateDocument": "2025-12-29",
+            "fournisseur": "THIELLIER Alain",
+            "numeroFacture": null,
+            "description": null,
+            "categorie": null,
+            "dateAjout": "2026-02-01T13:47:53.648Z",
+            "statut": "en_attente",
+            "ocrStatus": "validated",
+            "ocrConfidence": 0.85,
+            "hasFile": true,
+            "fileSize": 2532000,
+            "filePath": "justificatifs_files\/justif_1769953668052_9prn52q6z.jpg"
+        }
+    ]
+}

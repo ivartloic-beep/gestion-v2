@@ -1,0 +1,14 @@
+{
+  "name": "eventim-api",
+  "version": "1.0.0",
+  "description": "API scraping Eventim Light",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "puppeteer-core": "^24.40.0"
+  }
+}

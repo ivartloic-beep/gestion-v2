@@ -1,0 +1,120 @@
+        .import-api-card:not(.disabled):hover {
+            border-color: var(--mn-primary);
+            background: var(--mn-blue-light);
+            transform: translateY(-2px);
+        }
+        .import-api-card.selected {
+            border-color: var(--mn-dark-blue);
+            background: var(--mn-blue-light);
+        }
+        .manual-import-line {
+            background: var(--mn-bg);
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            padding: 1rem;
+            position: relative;
+        }
+        .manual-import-line .manual-line-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .manual-import-line .manual-line-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        @media (max-width: 600px) {
+            .manual-import-line .manual-line-fields {
+                grid-template-columns: 1fr;
+            }
+        }
+        .manual-import-line .manual-line-fields .form-group {
+            margin-bottom: 0;
+        }
+        .manual-import-line .manual-line-fields label {
+            font-size: 0.8rem;
+            color: var(--mn-text-secondary);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .manual-import-line .manual-line-fields input,
+        .manual-import-line .manual-line-fields select {
+            width: 100%;
+            padding: 0.5rem 0.65rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            font-size: 0.9rem;
+            font-family: var(--mn-font);
+        }
+        .manual-line-remove {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--mn-red);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .manual-line-remove:hover {
+            background: var(--mn-red-light);
+        }
+        .manual-line-spectacle-select {
+            grid-column: 1 / -1;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .import-match-card {
+            background: white;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius-lg);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .import-match-card.matched { border-left: 4px solid var(--mn-green); }
+        .import-match-card.unmatched { border-left: 4px solid var(--mn-yellow); }
+        .import-tarif-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            align-items: center;
+        }
+        .import-tarif-row:nth-child(even) { background: var(--mn-bg); }
+        .import-tarif-input {
+            padding: 0.3rem 0.5rem;
+            border: 1px solid var(--mn-border);
+            border-radius: var(--mn-radius);
+            width: 100%;
+            font-family: var(--mn-font);
+        }
+        .import-file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0.75rem;
+            background: var(--mn-bg);
+            border-radius: var(--mn-radius);
+            margin-bottom: 0.5rem;
+        }
+        .import-file-item .file-icon { font-size: 1.2rem; margin-right: 0.5rem; }
+        .import-file-item .file-name { flex: 1; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .import-file-item .file-remove {
+            background: var(--mn-dark-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+        #importDropZone.dragover {
+            border-color: var(--mn-primary);
+            background: var(--mn-blue-light);
+        }

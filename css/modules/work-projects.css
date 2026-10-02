@@ -1,0 +1,237 @@
+        /* ========== ESPACES DE TRAVAIL (Projets L&Com) ========== */
+        .wp-list-page.module-home-page { z-index: 110; }
+        .wp-detail-page {
+            position: fixed; top: 0; left: 260px; right: 0; bottom: 0;
+            background: var(--mn-bg); z-index: 110; overflow-y: auto; display: none; padding: 1.5rem 2rem 2.5rem;
+            box-sizing: border-box;
+        }
+        .wp-detail-page.active { display: block; }
+        @media (max-width: 768px) { .wp-detail-page { left: 0; padding: 1rem; } }
+
+        .wp-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+        .wp-search { width: 100%; max-width: 400px; padding: 0.65rem 1rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); margin-bottom: 1.25rem; box-sizing: border-box; }
+
+        .wp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .wp-card {
+            background: white; border: 1px solid var(--mn-border); border-left: 4px solid var(--wp-color, var(--mn-primary));
+            border-radius: var(--mn-radius-lg); padding: 1.25rem; cursor: pointer; transition: all var(--mn-transition);
+            display: flex; gap: 0.75rem; position: relative;
+        }
+        .wp-card:hover { box-shadow: var(--mn-shadow); transform: translateY(-2px); }
+        .wp-card-icon { font-size: 1.75rem; line-height: 1; flex-shrink: 0; }
+        .wp-card-icon--image { width: 2.75rem; height: 2.75rem; border-radius: 10px; overflow: hidden; background: var(--mn-bg); }
+        .wp-card-icon-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .wp-card-body { flex: 1; min-width: 0; }
+        .wp-card-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem; color: var(--mn-text); }
+        .wp-card-desc { font-size: 0.85rem; color: var(--mn-text-secondary); margin-bottom: 0.5rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .wp-card-meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--mn-text-light); }
+        .wp-card-actions { position: absolute; top: 0.75rem; right: 0.75rem; display: flex; gap: 0.25rem; opacity: 0; transition: opacity 0.2s; }
+        .wp-card:hover .wp-card-actions { opacity: 1; }
+        .wp-card-actions button { background: var(--mn-bg); border: 1px solid var(--mn-border); border-radius: 6px; padding: 0.25rem 0.4rem; cursor: pointer; }
+
+        .wp-empty { text-align: center; padding: 2rem; color: var(--mn-text-light); font-size: 0.9rem; }
+        .wp-muted { color: var(--mn-text-light); font-size: 0.85rem; }
+
+        .wp-detail-header { margin-bottom: 1rem; }
+        .wp-detail-header h1 { margin: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+        .wp-page-title-visual--icon { font-size: 1.5rem; line-height: 1; }
+        .wp-page-title-visual--image { width: 2.5rem; height: 2.5rem; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+        .wp-page-title-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .wp-page-title-text { line-height: 1.25; }
+        .wp-detail-subtitle { color: var(--mn-text-secondary); margin: 0.35rem 0 0; font-size: 0.9rem; }
+
+        .wp-tabs { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 1.25rem; border-bottom: 1px solid var(--mn-border); padding-bottom: 0.5rem; }
+        .wp-tab {
+            padding: 0.45rem 0.9rem; border: none; background: transparent; border-radius: var(--mn-radius);
+            font-size: 0.88rem; font-weight: 600; color: var(--mn-text-secondary); cursor: pointer;
+        }
+        .wp-tab.active { background: var(--mn-primary); color: white; }
+        .wp-tab:hover:not(.active) { background: var(--mn-bg); }
+
+        .wp-panel { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg); padding: 1.25rem; }
+
+        .wp-overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+        .wp-overview-stat { text-align: center; padding: 1rem; background: var(--mn-bg); border-radius: var(--mn-radius); }
+        .wp-overview-stat-val { display: block; font-size: 1.5rem; font-weight: 700; color: var(--mn-primary); }
+        .wp-overview-stat--warn .wp-overview-stat-val { color: #e53e3e; }
+        .wp-overview-section { margin-bottom: 1rem; }
+        .wp-overview-section h4 { margin: 0 0 0.5rem; font-size: 0.9rem; }
+        .wp-overview-tasklist { margin: 0; padding-left: 1.25rem; }
+        .wp-overview-tasklist li { cursor: pointer; margin-bottom: 0.35rem; color: var(--mn-dark-blue); }
+
+        .wp-member-chip { display: inline-block; background: var(--mn-blue-light); color: var(--mn-dark-blue); padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.78rem; margin: 0.15rem; }
+
+        .wp-kanban-board { display: flex; gap: 0.75rem; overflow-x: auto; min-height: 280px; }
+        .wp-kanban-col { flex: 0 0 240px; background: #eef1f8; border-radius: var(--mn-radius-lg); }
+        .wp-kanban-col-header { padding: 0.75rem; font-weight: 700; font-size: 0.85rem; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .wp-kanban-col-body { padding: 0.5rem; display: flex; flex-direction: column; gap: 0.45rem; min-height: 60px; }
+        .wp-task-card { background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); padding: 0.65rem; cursor: grab; }
+        .wp-task-card--overdue { border-color: #e17055; background: #fff5f3; }
+        .wp-task-card-top { display: flex; align-items: flex-start; gap: 0.4rem; }
+        .wp-task-quick-cb { margin-top: 0.15rem; flex-shrink: 0; }
+        .wp-task-card-title { font-weight: 600; font-size: 0.85rem; flex: 1; }
+        .wp-task-card-meta { font-size: 0.72rem; color: var(--mn-text-light); margin-top: 0.25rem; }
+        .wp-task-dup-btn { border: none; background: transparent; cursor: pointer; opacity: 0.5; font-size: 0.75rem; padding: 0 0.2rem; }
+        .wp-task-dup-btn:hover { opacity: 1; }
+        .wp-tasks-view-toggle { display: inline-flex; gap: 0.35rem; margin-left: 0.25rem; }
+        .wp-tasks-view-toggle .btn.active { background: var(--mn-primary, #4a90d9); color: white; }
+        .wp-tasks-assignee-filter { display: inline-flex; align-items: center; gap: 0.4rem; margin-left: auto; font-size: 0.85rem; color: var(--mn-text-light); }
+        .wp-tasks-assignee-filter select { padding: 0.35rem 0.5rem; border: 1px solid var(--mn-border); border-radius: var(--mn-radius); font-size: 0.85rem; min-width: 160px; }
+        .wp-tasks-list { margin-top: 0.25rem; }
+        .wp-tasks-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: white; border-radius: var(--mn-radius-lg); overflow: hidden; border: 1px solid var(--mn-border); }
+        .wp-tasks-table th, .wp-tasks-table td { padding: 0.55rem 0.65rem; text-align: left; border-bottom: 1px solid var(--mn-border); }
+        .wp-tasks-table th { background: #f4f6fb; font-weight: 600; font-size: 0.8rem; color: var(--mn-text-light); }
+        .wp-tasks-table tr:last-child td { border-bottom: none; }
+        .wp-tasks-table tbody tr { cursor: pointer; }
+        .wp-tasks-table tbody tr:hover { background: #f8f9fd; }
+        .wp-tasks-table tr.wp-task-row--overdue td { background: #fff5f3; }
+        .wp-task-status-pill { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+        .wp-task-status-pill--todo { background: #edf2f7; color: #4a5568; }
+        .wp-task-status-pill--in_progress { background: #ebf4ff; color: #2b6cb0; }
+        .wp-task-status-pill--done { background: #e6ffed; color: #276749; }
+        .wp-tpl-task-row { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+        .wp-tpl-task-row .wp-tpl-task-title { flex: 2; min-width: 120px; }
+        .wp-tpl-task-row .wp-tpl-task-desc { flex: 2; min-width: 100px; }
+        .wp-tpl-task-row .wp-tpl-task-due { width: 4rem; }
+
+        .wp-doc-grid, .wp-notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .wp-doc-card, .wp-note-card, .wp-doc-folder-card { border: 1px solid var(--mn-border); border-radius: var(--mn-radius); overflow: hidden; background: white; }
+        .wp-doc-card:hover { border-color: var(--mn-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .wp-doc-card.wp-doc-dragging { opacity: 0.45; }
+        .wp-doc-folder-card {
+            display: flex; gap: 0.75rem; padding: 0.85rem 0.9rem; cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            border-left: 4px solid #f6ad55;
+        }
+        .wp-doc-folder-card:hover { border-color: #f6ad55; box-shadow: 0 4px 12px rgba(0,0,0,0.06); background: #fffaf0; }
+        .wp-doc-folder-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+        .wp-doc-folder-body { flex: 1; min-width: 0; }
+        .wp-doc-folder-title { font-weight: 700; font-size: 0.9rem; line-height: 1.3; word-break: break-word; }
+        .wp-doc-folder-count { font-size: 0.75rem; color: var(--mn-text-light); margin-top: 0.2rem; }
+        .wp-doc-folder-actions { display: flex; gap: 0.25rem; margin-top: 0.45rem; }
+        .wp-doc-folder-actions button {
+            border: 1px solid var(--mn-border); background: white; border-radius: 6px;
+            padding: 0.2rem 0.4rem; cursor: pointer; font-size: 0.82rem;
+        }
+        .wp-doc-folder-actions button:hover { border-color: var(--mn-primary); background: var(--mn-bg); }
+        .wp-doc-drop-zone.drag-over {
+            border-color: var(--mn-primary) !important;
+            background: var(--mn-blue-light) !important;
+            box-shadow: 0 0 0 2px rgba(97, 97, 255, 0.2);
+        }
+        .wp-doc-breadcrumb {
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            margin-top: 0.75rem; padding: 0.55rem 0.75rem;
+            background: var(--mn-bg); border: 1px solid var(--mn-border); border-radius: var(--mn-radius);
+        }
+        .wp-doc-breadcrumb-link {
+            border: none; background: none; color: var(--mn-primary); font-weight: 600;
+            cursor: pointer; padding: 0; font-size: 0.85rem;
+        }
+        .wp-doc-breadcrumb-link:hover { text-decoration: underline; }
+        .wp-doc-breadcrumb-sep { color: var(--mn-text-light); font-size: 0.85rem; }
+        .wp-doc-breadcrumb-current { font-size: 0.85rem; font-weight: 600; color: var(--mn-text); }
+        .wp-doc-root-drop {
+            margin-left: auto; font-size: 0.78rem; color: var(--mn-text-secondary);
+            padding: 0.35rem 0.65rem; border: 1px dashed var(--mn-border); border-radius: 999px;
+            background: white; transition: all 0.2s;
+        }
+        .wp-doc-toolbar { align-items: center; }
+        .wp-note-card { padding: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .wp-note-card:hover { border-color: var(--mn-primary); background: #f8f9fd; }
+        .wp-note-card.wp-note-dragging { opacity: 0.45; cursor: grabbing; }
+        .wp-note-card-main { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.88rem; }
+        .wp-note-delete { flex-shrink: 0; border: none; background: transparent; cursor: pointer; padding: 0.2rem 0.35rem; border-radius: 4px; font-size: 0.95rem; line-height: 1; opacity: 0.55; }
+        .wp-note-delete:hover { opacity: 1; background: rgba(220, 53, 69, 0.1); }
+        .wp-note-folder-card {
+            display: flex; gap: 0.75rem; padding: 0.85rem 0.9rem; cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            border-left: 4px solid var(--mn-primary, #4a90d9);
+        }
+        .wp-note-folder-card:hover { border-color: var(--mn-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.06); background: #f8f9fd; }
+        .wp-note-folder-card.wp-note-dragging { opacity: 0.45; cursor: grabbing; }
+        .wp-note-folder-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+        .wp-note-folder-body { flex: 1; min-width: 0; }
+        .wp-note-folder-title { font-weight: 700; font-size: 0.9rem; line-height: 1.3; word-break: break-word; }
+        .wp-note-folder-count { font-size: 0.75rem; color: var(--mn-text-light); margin-top: 0.2rem; }
+        .wp-note-folder-actions { display: flex; gap: 0.25rem; margin-top: 0.45rem; }
+        .wp-note-folder-actions button {
+            border: 1px solid var(--mn-border); background: white; border-radius: 6px;
+            padding: 0.2rem 0.4rem; cursor: pointer; font-size: 0.82rem;
+        }
+        .wp-note-folder-actions button:hover { border-color: var(--mn-primary); background: var(--mn-bg); }
+        .wp-note-drop-zone.drag-over {
+            border-color: var(--mn-primary) !important;
+            background: var(--mn-blue-light) !important;
+            box-shadow: 0 0 0 2px rgba(97, 97, 255, 0.2);
+        }
+        .wp-doc-preview {
+            height: 150px; background: #f8f9fc;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border-bottom: 1px solid var(--mn-border);
+            padding: 0.45rem; box-sizing: border-box;
+        }
+        .wp-doc-preview--image { cursor: pointer; }
+        .wp-doc-preview--image img {
+            max-width: 100%; max-height: 100%; width: auto; height: auto;
+            object-fit: contain; display: block;
+        }
+        .wp-doc-preview--pdf { cursor: pointer; padding: 0.25rem; }
+        .wp-doc-preview--pdf iframe {
+            width: 100%; height: 100%; border: none; pointer-events: none;
+            background: white; display: block;
+        }
+        .wp-doc-preview--icon span { font-size: 3rem; line-height: 1; opacity: 0.85; }
+        .wp-doc-body { padding: 0.65rem 0.75rem 0.75rem; }
+        .wp-doc-title { font-weight: 600; font-size: 0.88rem; line-height: 1.3; word-break: break-word; }
+        .wp-doc-meta { font-size: 0.75rem; color: var(--mn-text-light); margin-top: 0.2rem; }
+        .wp-doc-actions { display: flex; gap: 0.35rem; margin-top: 0.55rem; flex-wrap: wrap; }
+        .wp-doc-actions .btn-sm { font-size: 0.78rem; padding: 0.3rem 0.55rem; line-height: 1.2; }
+        .wp-doc-actions .wp-doc-delete:hover { color: #c53030; border-color: #fc8181; background: #fff5f5; }
+
+        .wp-toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+
+        .wp-crm-link-section { margin-bottom: 1.25rem; }
+        .wp-crm-link-section h4 { margin: 0 0 0.5rem; font-size: 0.9rem; }
+        .wp-crm-link-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.65rem; background: var(--mn-bg); border-radius: var(--mn-radius); margin-bottom: 0.35rem; font-size: 0.88rem; cursor: pointer; }
+        .wp-crm-link-item button { margin-left: auto; background: none; border: none; color: #e53e3e; cursor: pointer; }
+
+        .wp-crm-deals-header { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+        .wp-crm-deals-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .wp-crm-deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+        .wp-crm-deal-card {
+            background: white; border: 1px solid var(--mn-border); border-radius: var(--mn-radius-lg);
+            padding: 1rem; cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .wp-crm-deal-card:hover { border-color: var(--mn-primary); box-shadow: var(--mn-shadow); }
+        .wp-crm-deal-card--won { border-left: 4px solid #38a169; }
+        .wp-crm-deal-card--lost { border-left: 4px solid #e53e3e; opacity: 0.85; }
+        .wp-crm-deal-card-top { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
+        .wp-crm-deal-card-title { font-weight: 700; font-size: 0.95rem; flex: 1; min-width: 0; }
+        .wp-crm-deal-unlink { border: none; background: transparent; color: #e53e3e; cursor: pointer; font-size: 0.85rem; padding: 0.15rem 0.35rem; flex-shrink: 0; }
+        .wp-crm-deal-card-meta { font-size: 0.82rem; color: var(--mn-text-secondary); margin-bottom: 0.5rem; }
+        .wp-crm-deal-card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+        .wp-crm-deal-stage { color: var(--mn-text-light); }
+        .wp-crm-deal-amount { font-weight: 700; color: var(--mn-primary); }
+
+        .wp-activity-item { padding: 0.75rem 0; border-bottom: 1px solid var(--mn-border-light); font-size: 0.88rem; }
+        .wp-activity-meta { font-size: 0.75rem; color: var(--mn-text-light); margin-bottom: 0.25rem; }
+
+        .wp-admin-template-card { display: flex; justify-content: space-between; align-items: center; background: white; border: 1px solid var(--mn-border); border-left: 4px solid #4a90d9; border-radius: var(--mn-radius-lg); padding: 1rem; margin-bottom: 0.75rem; }
+        .wp-admin-template-header { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .wp-admin-template-icon { font-size: 1.5rem; }
+        .wp-tpl-task-row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; align-items: center; }
+        .wp-tpl-task-row input { flex: 1; padding: 0.45rem; border: 1px solid var(--mn-border); border-radius: 6px; }
+
+        .btn-sm { padding: 0.35rem 0.65rem !important; font-size: 0.82rem !important; }
+
+        .wp-form-hint { margin: 0.25rem 0 0.65rem; font-size: 0.82rem; color: var(--mn-text-light); }
+        .wp-form-image-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .wp-form-image-preview {
+            width: 4rem; height: 4rem; border-radius: 10px; border: 1px solid var(--mn-border);
+            background: var(--mn-bg); display: flex; align-items: center; justify-content: center;
+            overflow: hidden; font-size: 1.75rem; flex-shrink: 0;
+        }
+        .wp-form-image-preview-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .wp-form-image-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }

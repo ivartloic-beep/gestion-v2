@@ -1,0 +1,63 @@
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --mn-bg: #f6f7fb;
+            --mn-surface: #ffffff;
+            /* L&Com — teal / mint (logo) */
+            --mn-brand-dark: #0a4d42;
+            --mn-brand-mid: #1a7563;
+            --mn-brand: #2d9d82;
+            --mn-brand-bright: #66d2b3;
+            --mn-brand-bg: #e8f7f3;
+            --mn-hero-gradient: linear-gradient(135deg, #0a4d42 0%, #1a7563 48%, #2d9d82 100%);
+            --mn-hero-shadow: 0 8px 24px rgba(10, 77, 66, 0.22);
+            --mn-sidebar-bg: #0a4d42;
+            --mn-sidebar-hover: #145248;
+            --mn-sidebar-active: #1a7563;
+            --mn-primary: #2d9d82;
+            --mn-primary-hover: #248f74;
+            --mn-green: #00c875;
+            --mn-green-light: #e6fff4;
+            --mn-yellow: #fdab3d;
+            --mn-yellow-light: #fff7e6;
+            --mn-red: #e2445c;
+            --mn-red-light: #ffecef;
+            --mn-orange: #ff642e;
+            --mn-blue: #3db896;
+            --mn-blue-light: #e8f7f3;
+            --mn-purple: #a25ddc;
+            --mn-purple-light: #f3ebff;
+            --mn-pink: #ff158a;
+            --mn-teal: #66d2b3;
+            --mn-dark-blue: #1a8f78;
+            --mn-text: #323338;
+            --mn-text-secondary: #676879;
+            --mn-text-light: #c5c7d0;
+            --mn-border: #e6e9ef;
+            --mn-border-light: #f0f1f5;
+            --mn-radius: 8px;
+            --mn-radius-lg: 12px;
+            --mn-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --mn-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --mn-shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+            --mn-font: 'Figtree', 'Noto Sans', sans-serif;
+            --mn-transition: 150ms ease;
+            /* Legacy variable mapping for JS compatibility */
+            --primary: #0a4d42;
+            --accent: #2d9d82;
+            --secondary: #145248;
+            --light: #f6f7fb;
+            --text: #323338;
+            --border: #e6e9ef;
+            --success: #00c875;
+            --warning: #fdab3d;
+        }
+
+        body {
+            font-family: var(--mn-font);
+            background: var(--mn-bg);
+            min-height: 100vh;
+            color: var(--mn-text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
